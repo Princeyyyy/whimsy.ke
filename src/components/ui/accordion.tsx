@@ -1,0 +1,60 @@
+"use client";
+
+import * as React from "react";
+import * as AccordionPrimitive from "@radix-ui/react-accordion";
+import { ChevronDown } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+export const Accordion = AccordionPrimitive.Root;
+
+export const AccordionItem = React.forwardRef<
+  React.ElementRef<typeof AccordionPrimitive.Item>,
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
+>(({ className, ...props }, ref) => (
+  <AccordionPrimitive.Item
+    ref={ref}
+    className={cn(
+      "rounded-card border-plum/25 data-[state=open]:border-plum mb-3 overflow-hidden border-2 bg-white shadow-[0_4px_0_#FFD9E8] transition-colors",
+      className,
+    )}
+    {...props}
+  />
+));
+AccordionItem.displayName = "AccordionItem";
+
+export const AccordionTrigger = React.forwardRef<
+  React.ElementRef<typeof AccordionPrimitive.Trigger>,
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
+>(({ className, children, ...props }, ref) => (
+  <AccordionPrimitive.Header className="flex">
+    <AccordionPrimitive.Trigger
+      ref={ref}
+      className={cn(
+        "font-display text-plum text-h4 hover:bg-blush/25 flex min-h-13 flex-1 items-center justify-between gap-3 px-5 py-4 text-left font-semibold transition-all [&[data-state=open]>svg]:rotate-180",
+        className,
+      )}
+      {...props}
+    >
+      {children}
+      <ChevronDown
+        aria-hidden="true"
+        className="text-plum size-5 shrink-0 transition-transform duration-200"
+      />
+    </AccordionPrimitive.Trigger>
+  </AccordionPrimitive.Header>
+));
+AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
+
+export const AccordionContent = React.forwardRef<
+  React.ElementRef<typeof AccordionPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
+>(({ className, children, ...props }, ref) => (
+  <AccordionPrimitive.Content
+    ref={ref}
+    className="text-soft-plum text-body data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden"
+    {...props}
+  >
+    <div className={cn("border-blush/60 border-t px-5 pt-3 pb-5", className)}>{children}</div>
+  </AccordionPrimitive.Content>
+));
+AccordionContent.displayName = AccordionPrimitive.Content.displayName;

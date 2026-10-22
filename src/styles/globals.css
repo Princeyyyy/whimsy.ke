@@ -1,0 +1,182 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme {
+  /* ========================================================================
+   * COLOUR TOKENS (OKLCH with exact brand hex equivalence)
+   * ======================================================================== */
+  --color-cream: oklch(0.982 0.012 67.5); /* #FFF8F2 - Page background */
+  --color-cream-subtle: oklch(0.962 0.018 67.5); /* #F7EDE4 - Soft recessed fill */
+
+  --color-blush: oklch(0.912 0.048 352.4); /* #FFD9E8 - Borders, soft shadows, card accents */
+  --color-blush-hover: oklch(0.878 0.068 352.4); /* #FFC4DC */
+  --color-blush-pressed: oklch(0.842 0.088 352.4); /* #FFAED0 */
+
+  --color-bubblegum: oklch(0.768 0.142 354.8); /* #FF8FB4 - Primary brand fill */
+  --color-bubblegum-hover: oklch(0.728 0.162 354.8); /* #FF75A3 */
+  --color-bubblegum-pressed: oklch(0.688 0.178 354.8); /* #F25B8E */
+  --color-bubblegum-deep: oklch(
+    0.552 0.178 355.2
+  ); /* #C83E6B - High contrast berry for white text */
+
+  --color-lavender: oklch(0.902 0.046 302.5); /* #E7D9FB - Secondary surface & badges */
+  --color-lavender-hover: oklch(0.865 0.066 302.5); /* #D8C2F8 */
+  --color-lavender-pressed: oklch(0.825 0.086 302.5); /* #C8ABF4 */
+
+  --color-mint: oklch(0.942 0.042 154.2); /* #D7F5E4 - Success, M-Pesa & Free Delivery */
+  --color-mint-hover: oklch(0.905 0.064 154.2); /* #BCEBCE */
+  --color-mint-deep: oklch(0.445 0.095 154.2); /* #1E633E - Accessible text on mint */
+
+  --color-butter: oklch(0.908 0.082 88.5); /* #F5E1A4 - Hang tags, stars, tape */
+  --color-butter-hover: oklch(0.872 0.102 88.5); /* #EED27E */
+
+  --color-plum: oklch(0.352 0.046 322.8); /* #4A3552 - Primary ink & outlines */
+  --color-plum-hover: oklch(0.295 0.046 322.8); /* #392740 */
+  --color-soft-plum: oklch(0.538 0.042 321.4); /* #7A6685 - Secondary text */
+
+  --color-white: oklch(1 0 0); /* #FFFFFF */
+  --color-error: oklch(0.495 0.175 12.5); /* #B3264E - Validation & Low-stock alerts */
+  --color-error-bg: oklch(0.945 0.032 12.5); /* #FDE8EE */
+
+  /* ========================================================================
+   * TYPOGRAPHY TOKENS
+   * ======================================================================== */
+  --font-display: var(--font-fredoka), ui-rounded, "Hiragino Maru Gothic ProN", sans-serif;
+  --font-sans: var(--font-quicksand), ui-sans-serif, system-ui, sans-serif;
+
+  --text-display: clamp(2.25rem, 4vw + 1rem, 3.75rem);
+  --text-display--line-height: 1.08;
+  --text-display--letter-spacing: -0.02em;
+
+  --text-h1: clamp(1.875rem, 3vw + 0.75rem, 2.75rem);
+  --text-h1--line-height: 1.14;
+  --text-h1--letter-spacing: -0.015em;
+
+  --text-h2: clamp(1.5rem, 2vw + 0.5rem, 2.125rem);
+  --text-h2--line-height: 1.2;
+  --text-h2--letter-spacing: -0.01em;
+
+  --text-h3: clamp(1.25rem, 1.2vw + 0.5rem, 1.5rem);
+  --text-h3--line-height: 1.28;
+  --text-h3--letter-spacing: -0.005em;
+
+  --text-h4: 1.125rem;
+  --text-h4--line-height: 1.35;
+
+  --text-body: 1rem;
+  --text-body--line-height: 1.6;
+
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.5;
+
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1.4;
+
+  /* ========================================================================
+   * RADII & CHUNKY STICKER SHADOWS
+   * ======================================================================== */
+  --radius-card: 1.5rem; /* 24px */
+  --radius-feature: 1.75rem; /* 28px */
+  --radius-sheet: 1.75rem; /* 28px */
+  --radius-tag: 0.875rem; /* 14px */
+  --radius-pill: 9999px;
+
+  --shadow-sticker: 0 5px 0 oklch(0.912 0.048 352.4); /* 0 5px 0 blush */
+  --shadow-sticker-hover: 0 7px 0 oklch(0.878 0.068 352.4);
+  --shadow-sticker-plum: 0 4px 0 oklch(0.352 0.046 322.8); /* 0 4px 0 plum */
+  --shadow-sticker-plum-lg: 0 6px 0 oklch(0.352 0.046 322.8);
+  --shadow-sticker-pressed: 0 1px 0 oklch(0.352 0.046 322.8);
+  --shadow-sticker-card:
+    0 6px 0 oklch(0.912 0.048 352.4), 0 0 0 2px oklch(0.352 0.046 322.8 / 0.14);
+  --shadow-sticker-card-hover: 0 9px 0 oklch(0.878 0.068 352.4), 0 0 0 2px oklch(0.352 0.046 322.8);
+
+  /* ========================================================================
+   * SPACING, LAYOUT & MOTION TOKENS
+   * ======================================================================== */
+  --spacing-container: 75rem; /* 1200px max content width */
+  --ease-sticker: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before {
+    border-color: var(--color-blush);
+  }
+
+  html {
+    background-color: var(--color-cream);
+    color: var(--color-plum);
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    min-height: 100dvh;
+    width: 100%;
+    max-width: 100%;
+    background-color: var(--color-cream);
+    /* Subtle low-contrast polka-dot page background from the prototype */
+    background-image: radial-gradient(oklch(0.912 0.048 352.4 / 0.55) 1.75px, transparent 1.75px);
+    background-size: 24px 24px;
+    background-position: 0 0;
+    color: var(--color-plum);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  /* High-contrast focus ring across all interactive elements */
+  :focus-visible:not(input):not(textarea) {
+    outline: 3px solid var(--color-plum);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* Washi tape corner accent */
+  .washi-tape {
+    position: relative;
+  }
+  .washi-tape::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    width: 84px;
+    height: 24px;
+    transform: translateX(-50%) rotate(-2deg);
+    background-color: oklch(0.908 0.082 88.5 / 0.85);
+    border-left: 2px dashed oklch(0.352 0.046 322.8 / 0.25);
+    border-right: 2px dashed oklch(0.352 0.046 322.8 / 0.25);
+    box-shadow: 0 2px 0 oklch(0.352 0.046 322.8 / 0.08);
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  /* Safe-area bottom padding for sticky bars on phones */
+  .pb-safe {
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+}
