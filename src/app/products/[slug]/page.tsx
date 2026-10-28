@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
     return { title: "Product Not Found" };
   }
   return {
-    title: `${product.name} (KES ${product.price.toLocaleString()})`,
+    title: `${product.name} — ${product.category}`,
     description: product.shortDescription,
   };
 }

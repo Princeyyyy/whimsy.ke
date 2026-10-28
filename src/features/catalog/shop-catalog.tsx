@@ -8,7 +8,7 @@ import { copy } from "@/config/i18n";
 import { formatKES } from "@/lib/formatters";
 import { getCategories, getMoodTiles, getProducts } from "@/lib/repositories";
 import type { CategorySlug, MoodSlug, Product } from "@/data/types";
-import { BowMascot } from "@/illustrations/bow-mascot";
+import { BrandGlyph } from "@/illustrations/brand-glyph";
 import { ScallopDivider } from "@/illustrations/scallop-divider";
 import { Button } from "@/components/ui/button";
 import { Badge, Chip } from "@/components/ui/badge";
@@ -35,9 +35,9 @@ export interface ShopCatalogProps {
 
 export function ShopCatalog({
   initialProducts,
-  heading = "Shop All Cute Goods",
-  subheading = "Every pastel bag, ceramic mug, journal, and gift box in one happy place.",
-  badgeText = "30 Pastel Finds ✨",
+  heading = "Curated Collection",
+  subheading = "Handcrafted ceramics, everyday carry, thoughtful stationery, and curated gift boxes.",
+  badgeText = "30 Studio Pieces",
 }: ShopCatalogProps) {
   const categories = React.useMemo(() => getCategories(), []);
   const moods = React.useMemo(() => getMoodTiles(), []);
@@ -100,7 +100,7 @@ export function ShopCatalog({
       {/* Search inside Catalog */}
       <div>
         <Label htmlFor="shop-search-input">Keyword Search</Label>
-        <div className="border-plum focus-within:border-plum flex min-h-12 w-full items-center gap-2.5 rounded-full border-2 bg-white px-4 py-2 shadow-[0_3px_0_#FFD9E8] transition-all focus-within:shadow-[0_4px_0_#4A3552]">
+        <div className="border-line-strong focus-within:border-line-strong shadow-sticker focus-within:shadow-sticker flex min-h-12 w-full items-center gap-2.5 rounded-full border bg-white px-4 py-2 transition-all">
           <Search className="text-plum size-4 shrink-0" aria-hidden="true" />
           <input
             id="shop-search-input"
@@ -115,7 +115,7 @@ export function ShopCatalog({
               type="button"
               onClick={() => void setFilters({ q: "" })}
               aria-label="Clear search keyword"
-              className="border-plum bg-blush/70 text-plum hover:bg-blush inline-flex size-6 shrink-0 items-center justify-center rounded-full border-2 transition-colors"
+              className="border-line-strong bg-blush/70 text-plum hover:bg-blush inline-flex size-6 shrink-0 items-center justify-center rounded-full border transition-colors"
             >
               <X className="size-3.5" />
             </button>
@@ -168,7 +168,7 @@ export function ShopCatalog({
       <div>
         <div className="mb-1 flex items-center justify-between">
           <span className="font-display text-plum text-small font-bold">Max Price</span>
-          <span className="font-display border-plum bg-butter text-plum rounded-lg border px-2 py-0.5 text-xs font-bold">
+          <span className="font-display border-line-strong bg-butter text-plum rounded-lg border px-2 py-0.5 text-xs font-bold">
             Up to {formatKES(filters.maxPrice)}
           </span>
         </div>
@@ -187,7 +187,7 @@ export function ShopCatalog({
 
       {/* Pastel Colour Filter */}
       <div>
-        <p className="font-display text-plum text-small mb-2 font-bold">Pastel Palette</p>
+        <p className="font-display text-plum text-small mb-2 font-bold">Color Palette</p>
         <div className="flex flex-wrap gap-2">
           {COLOUR_FILTERS.map((col) => (
             <Chip
@@ -245,7 +245,7 @@ export function ShopCatalog({
 
       <div className="mx-auto mt-8 max-w-(--spacing-container) px-4 sm:px-6">
         {/* Top Toolbar (Result count, Mobile Filter Drawer Button, Sort Dropdown) */}
-        <div className="rounded-card border-plum/25 mb-6 flex flex-wrap items-center justify-between gap-3 border-2 bg-white p-3.5 shadow-[0_3px_0_#FFD9E8]">
+        <div className="rounded-card border-plum/25 shadow-sticker mb-6 flex flex-wrap items-center justify-between gap-3 border bg-white p-3.5">
           <div className="flex items-center gap-3">
             {/* Mobile Filter Drawer Trigger */}
             <Drawer.Root open={mobileFilterOpen} onOpenChange={setMobileFilterOpen}>
@@ -259,18 +259,18 @@ export function ShopCatalog({
                 <Drawer.Overlay className="bg-plum/45 fixed inset-0 z-50 backdrop-blur-[2px]" />
                 <Drawer.Content
                   aria-describedby={undefined}
-                  className="border-plum bg-cream fixed right-0 bottom-0 left-0 z-50 flex max-h-[88dvh] flex-col rounded-t-[28px] border-t-2 outline-none"
+                  className="border-line-strong bg-cream fixed right-0 bottom-0 left-0 z-50 flex max-h-[88dvh] flex-col rounded-t-[28px] border-t outline-none"
                 >
                   <div className="bg-plum/25 mx-auto mt-3 h-1.5 w-12 shrink-0 rounded-full" />
                   <div className="border-blush flex items-center justify-between border-b px-5 py-3.5">
                     <Drawer.Title className="font-display text-plum text-lg font-bold">
-                      Filter Cute Finds ({filteredProducts.length})
+                      Filter Collection ({filteredProducts.length})
                     </Drawer.Title>
                     <Drawer.Close asChild>
                       <button
                         type="button"
                         aria-label="Close filters"
-                        className="border-plum text-plum inline-flex size-10 items-center justify-center rounded-full border-2 bg-white"
+                        className="border-line-strong text-plum inline-flex size-10 items-center justify-center rounded-full border bg-white"
                       >
                         <X className="size-4" />
                       </button>
@@ -294,7 +294,7 @@ export function ShopCatalog({
 
             <p aria-live="polite" className="font-display text-plum text-sm font-bold">
               Showing {filteredProducts.length}{" "}
-              {filteredProducts.length === 1 ? "cute find" : "cute finds"}
+              {filteredProducts.length === 1 ? "product" : "products"}
             </p>
           </div>
 
@@ -309,7 +309,7 @@ export function ShopCatalog({
               id="shop-sort-select"
               value={filters.sort}
               onChange={(e) => void setFilters({ sort: e.target.value })}
-              className="font-display border-plum bg-cream text-plum focus-visible:outline-plum min-h-10 min-w-0 flex-1 rounded-full border-2 px-3.5 py-1.5 text-xs font-bold shadow-[0_2px_0_#4A3552] sm:min-h-11 sm:flex-initial sm:px-4"
+              className="font-display border-line-strong bg-cream text-plum focus-visible:outline-plum shadow-sticker min-h-10 min-w-0 flex-1 rounded-full border px-3.5 py-1.5 text-xs font-bold sm:min-h-11 sm:flex-initial sm:px-4"
             >
               <option value="featured">Featured & Bestsellers</option>
               <option value="newest">Newest Arrivals</option>
@@ -323,15 +323,15 @@ export function ShopCatalog({
         {/* Main 12-Column Layout: Sidebar Filters (Desktop) + Product Grid */}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
           <aside aria-label="Product filters" className="hidden lg:col-span-3 lg:block">
-            <div className="rounded-card border-plum shadow-sticker sticky top-24 border-2 bg-white p-5">
+            <div className="rounded-card border-line-strong shadow-sticker sticky top-24 border bg-white p-5">
               {filterControls}
             </div>
           </aside>
 
           <div className="lg:col-span-9">
             {filteredProducts.length === 0 ? (
-              <div className="rounded-feature border-plum shadow-sticker flex flex-col items-center justify-center border-2 bg-white px-6 py-16 text-center">
-                <BowMascot mood="confused" size="lg" />
+              <div className="rounded-feature border-line-strong shadow-sticker flex flex-col items-center justify-center border bg-white px-6 py-16 text-center">
+                <BrandGlyph mood="confused" size="lg" />
                 <h2 className="font-display text-plum text-h3 mt-4 font-bold">
                   {copy.shop.emptyFilterTitle}
                 </h2>

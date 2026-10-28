@@ -1,30 +1,26 @@
-import * as React from "react";
+﻿import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "font-display inline-flex max-w-full items-center justify-center gap-2 rounded-pill border-2 border-plum text-center leading-snug font-semibold transition-all duration-150 select-none sm:whitespace-nowrap focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-plum disabled:pointer-events-none disabled:opacity-50",
+  "font-display inline-flex max-w-full items-center justify-center gap-2 rounded-pill border border-transparent text-center leading-snug font-medium transition-all duration-200 select-none sm:whitespace-nowrap focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-plum disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        primary:
-          "bg-bubblegum text-plum shadow-sticker-plum hover:bg-bubblegum-hover active:translate-y-0.75 active:bg-bubblegum-pressed active:shadow-sticker-pressed",
+        primary: "bg-plum text-cream hover:bg-plum-hover active:scale-[0.98] active:bg-plum",
         secondary:
-          "bg-white text-plum shadow-sticker-plum hover:bg-blush/50 active:translate-y-0.75 active:bg-blush active:shadow-sticker-pressed",
-        lavender:
-          "bg-lavender text-plum shadow-sticker-plum hover:bg-lavender-hover active:translate-y-0.75 active:bg-lavender-pressed active:shadow-sticker-pressed",
-        mint: "bg-mint text-plum shadow-sticker-plum hover:bg-mint-hover active:translate-y-0.75 active:shadow-sticker-pressed",
-        ghost:
-          "border-transparent bg-transparent text-plum shadow-none hover:border-blush hover:bg-blush/40 active:bg-blush/70",
-        danger:
-          "bg-error text-white shadow-sticker-plum hover:opacity-95 active:translate-y-0.75 active:shadow-sticker-pressed",
+          "border-line-strong bg-white text-plum hover:border-plum hover:bg-cream-subtle active:scale-[0.98]",
+        lavender: "bg-lavender text-plum hover:bg-lavender-hover active:scale-[0.98]",
+        mint: "bg-mint text-plum hover:bg-mint-hover active:scale-[0.98]",
+        ghost: "bg-transparent text-plum hover:bg-blush/60 active:bg-blush",
+        danger: "bg-error text-white hover:opacity-90 active:scale-[0.98]",
       },
       size: {
-        sm: "min-h-10 px-3.5 py-2 text-xs sm:min-h-11 sm:px-4 sm:text-small",
-        md: "min-h-11 px-4 py-2.5 text-sm sm:px-6 sm:text-body",
-        lg: "min-h-12 px-5 py-3 text-base sm:min-h-13 sm:px-8 sm:py-3.5 sm:text-h4",
+        sm: "min-h-10 px-4 py-2 text-xs sm:min-h-11 sm:text-small",
+        md: "min-h-11 px-5 py-2.5 text-sm sm:px-6 sm:text-body",
+        lg: "min-h-12 px-6 py-3 text-base sm:min-h-13 sm:px-8 sm:py-3.5",
         icon: "size-11 shrink-0 p-0",
       },
     },
@@ -34,7 +30,6 @@ const buttonVariants = cva(
     },
   },
 );
-
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
   asChild?: boolean;

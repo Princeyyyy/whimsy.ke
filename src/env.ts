@@ -21,7 +21,7 @@ const parsed = envSchema.safeParse({
 });
 
 if (!parsed.success) {
-  console.error("❌ Invalid environment variables in Whimsy.KE:\n", z.prettifyError(parsed.error));
+  console.error("Invalid environment variables in Whimsy.KE:\n", z.prettifyError(parsed.error));
   throw new Error("Invalid environment variables. Check .env.example for required variables.");
 }
 

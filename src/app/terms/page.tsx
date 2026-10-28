@@ -23,7 +23,7 @@ export default function TermsPage() {
       <ScallopDivider fill="blush" flip />
 
       <div className="mx-auto mt-10 max-w-3xl px-4 sm:px-6">
-        <article className="rounded-feature border-plum shadow-sticker space-y-4 border-2 bg-white p-6 sm:p-8">
+        <article className="rounded-feature border-line-strong shadow-sticker space-y-4 border bg-white p-6 sm:p-8">
           <h2 className="font-display text-plum text-h3 font-bold">
             1. Proof of Concept Demonstration
           </h2>

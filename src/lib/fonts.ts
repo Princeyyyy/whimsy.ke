@@ -1,17 +1,14 @@
-import { Fredoka, Quicksand } from "next/font/google";
+/**
+ * Typography system: Bricolage Grotesque (display) & Hanken Grotesk (body/sans)
+ * Google Fonts linked in globals.css; fallback variables defined here for SSR/build safety.
+ */
 
-export const fredoka = Fredoka({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-fredoka",
-  display: "swap",
-  adjustFontFallback: true,
-});
+export const bricolage = {
+  variable: "font-bricolage",
+  className: "font-bricolage",
+};
 
-export const quicksand = Quicksand({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-quicksand",
-  display: "swap",
-  adjustFontFallback: true,
-});
+export const hanken = {
+  variable: "font-hanken",
+  className: "font-hanken",
+};

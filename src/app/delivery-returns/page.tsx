@@ -33,14 +33,14 @@ export default function DeliveryReturnsPage() {
       <ScallopDivider fill="blush" flip />
 
       <div className="mx-auto mt-10 max-w-4xl space-y-10 px-4 sm:px-6">
-        <section className="rounded-feature border-plum shadow-sticker overflow-hidden border-2 bg-white p-6 sm:p-8">
+        <section className="rounded-feature border-line-strong shadow-sticker overflow-hidden border bg-white p-6 sm:p-8">
           <h2 className="font-display text-plum text-h2 mb-4 font-bold">
             Kenya Delivery Zones & Rates
           </h2>
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
               <thead>
-                <tr className="border-blush text-plum font-display border-b-2">
+                <tr className="border-blush text-plum font-display border-b">
                   <th className="py-3 pr-4">Zone / Area</th>
                   <th className="px-4 py-3">Fee</th>
                   <th className="px-4 py-3">Estimated Arrival</th>
@@ -69,7 +69,7 @@ export default function DeliveryReturnsPage() {
           </div>
         </section>
 
-        <section className="rounded-feature border-plum shadow-sticker space-y-4 border-2 bg-white p-6 sm:p-8">
+        <section className="rounded-feature border-line-strong shadow-sticker space-y-4 border bg-white p-6 sm:p-8">
           <h2 className="font-display text-plum text-h2 font-bold">
             14-Day Easy Returns & Safe Ceramic Guarantee
           </h2>

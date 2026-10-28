@@ -13,13 +13,13 @@ export function StickerToaster() {
         unstyled: true,
         classNames: {
           toast:
-            "w-full max-w-md flex items-center gap-3 rounded-2xl border-2 border-plum bg-white px-4 py-3.5 text-plum shadow-[0_5px_0_#4A3552] font-sans text-small font-semibold",
+            "w-full max-w-md flex items-center gap-3 rounded-2xl border border-line-strong bg-white px-4 py-3.5 text-plum shadow-sticker font-sans text-small font-semibold",
           title: "font-display text-plum text-body font-bold",
           description: "text-soft-plum text-xs",
           actionButton:
-            "ml-auto rounded-pill border-2 border-plum bg-butter px-3.5 py-1.5 font-display text-xs font-bold text-plum shadow-[0_2px_0_#4A3552] hover:bg-butter-hover",
+            "ml-auto rounded-pill border border-line-strong bg-butter px-3.5 py-1.5 font-display text-xs font-bold text-plum shadow-sticker hover:bg-butter-hover",
           cancelButton:
-            "rounded-pill border-2 border-plum/30 bg-cream px-3 py-1 font-display text-xs font-semibold text-soft-plum",
+            "rounded-pill border border-plum/30 bg-cream px-3 py-1 font-display text-xs font-semibold text-soft-plum",
         },
       }}
     />

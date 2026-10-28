@@ -1,19 +1,19 @@
-import * as React from "react";
+﻿import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const badgeVariants = cva(
-  "font-display inline-flex items-center gap-1.5 rounded-pill border-2 border-plum px-3 py-1 text-caption font-semibold tracking-wide transition-colors",
+  "font-display inline-flex items-center gap-1.5 rounded-pill border border-transparent px-2.5 py-1 text-caption font-medium tracking-wide transition-colors",
   {
     variants: {
       variant: {
-        new: "bg-mint text-plum shadow-[0_2px_0_#4A3552]",
-        bestseller: "bg-butter text-plum shadow-[0_2px_0_#4A3552]",
-        sale: "bg-bubblegum text-plum shadow-[0_2px_0_#4A3552]",
-        lowStock: "bg-error-bg text-error border-error shadow-[0_2px_0_#B3264E]",
-        soldOut: "bg-cream-subtle text-soft-plum border-soft-plum",
-        lavender: "bg-lavender text-plum shadow-[0_2px_0_#4A3552]",
-        outline: "bg-white text-plum",
+        new: "bg-mint text-mint-deep",
+        bestseller: "bg-butter text-plum",
+        sale: "bg-blush text-bubblegum-deep",
+        lowStock: "bg-error-bg text-error",
+        soldOut: "bg-cream-subtle text-soft-plum",
+        lavender: "bg-lavender text-plum",
+        outline: "border-line-strong bg-white text-plum",
       },
     },
     defaultVariants: {
@@ -21,7 +21,6 @@ const badgeVariants = cva(
     },
   },
 );
-
 export interface BadgeProps
   extends React.HTMLAttributes<HTMLSpanElement>, VariantProps<typeof badgeVariants> {}
 
@@ -43,10 +42,10 @@ export function Chip({ selected = false, count, className, children, ...props }:
       type="button"
       aria-pressed={selected}
       className={cn(
-        "font-display rounded-pill text-small inline-flex min-h-10 max-w-full items-center gap-2 border-2 px-3.5 py-1.5 text-left font-semibold transition-all duration-150 select-none sm:min-h-11 sm:px-4 sm:py-2",
+        "font-display rounded-pill text-small inline-flex min-h-10 max-w-full items-center gap-2 border px-3.5 py-1.5 text-left font-medium transition-all duration-150 select-none sm:min-h-11 sm:px-4 sm:py-2",
         selected
-          ? "border-plum bg-bubblegum text-plum shadow-[0_3px_0_#4A3552]"
-          : "border-plum/30 text-plum hover:border-plum hover:bg-blush/35 bg-white active:translate-y-0.5",
+          ? "border-plum bg-plum text-cream"
+          : "border-line-strong text-plum hover:border-plum bg-white",
         className,
       )}
       {...props}
@@ -56,7 +55,7 @@ export function Chip({ selected = false, count, className, children, ...props }:
         <span
           className={cn(
             "rounded-pill px-2 py-0.5 text-xs",
-            selected ? "text-plum bg-white/80" : "bg-blush/60 text-plum",
+            selected ? "text-plum bg-cream" : "bg-blush/60 text-plum",
           )}
         >
           {count}

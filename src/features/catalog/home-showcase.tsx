@@ -30,12 +30,11 @@ import {
   getReviews,
 } from "@/lib/repositories";
 import { useHydrated, useShopStore } from "@/features/cart/store";
-import { BowMascot } from "@/illustrations/bow-mascot";
+import { BrandGlyph } from "@/illustrations/brand-glyph";
 import { ProductIllustration } from "@/illustrations/product-illustrations";
 import { ScallopDivider } from "@/illustrations/scallop-divider";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { HangTagPrice } from "@/components/ui/hang-tag-price";
 import {
   Accordion,
   AccordionContent,
@@ -50,6 +49,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { ProductCard } from "@/components/shared/product-card";
+import { motion } from "motion/react";
 
 export function HomeShowcase() {
   const categories = React.useMemo(() => getCategories(), []);
@@ -95,7 +95,7 @@ export function HomeShowcase() {
   function handleCopyPromo() {
     navigator.clipboard?.writeText(siteConfig.promoCodes.WHIMSY10.code);
     setCopiedCode(true);
-    toast.success("Copied code WHIMSY10! Use it at checkout for 10% off 🎀");
+    toast.success("Copied code WHIMSY10! Use it at checkout for 10% off");
   }
 
   return (
@@ -105,143 +105,195 @@ export function HomeShowcase() {
         <div className="mx-auto max-w-(--spacing-container) px-4 sm:px-6">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
             {/* Hero Copy */}
-            <div className="min-w-0 space-y-6 lg:col-span-7">
-              <div className="border-plum text-plum inline-flex max-w-full items-center gap-2 rounded-full border-2 bg-white px-3.5 py-1.5 shadow-[0_3px_0_#4A3552] sm:px-4">
-                <BowMascot mood="waving" size="sm" animated={false} className="size-6 shrink-0" />
-                <span className="font-display text-xs font-bold sm:text-sm">
-                  Karibu to Kenya&apos;s Cutest Lifestyle Shop ✨
+            <motion.div
+              initial="hidden"
+              animate="show"
+              variants={{
+                hidden: { opacity: 0 },
+                show: {
+                  opacity: 1,
+                  transition: { staggerChildren: 0.1, delayChildren: 0.05 },
+                },
+              }}
+              className="min-w-0 space-y-6 lg:col-span-7"
+            >
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, y: 12 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
+                }}
+                className="border-line/70 text-plum inline-flex max-w-full items-center gap-2.5 rounded-full border bg-white px-3.5 py-1.5 shadow-sm sm:px-4"
+              >
+                <span className="size-2 shrink-0 rounded-full bg-emerald-500 motion-safe:animate-pulse" />
+                <span className="font-display text-xs font-semibold sm:text-sm">
+                  Curated Lifestyle Goods · Nairobi, Kenya
                 </span>
-              </div>
+              </motion.div>
 
-              <h1 className="font-display text-plum text-display font-bold text-balance">
+              <motion.h1
+                variants={{
+                  hidden: { opacity: 0, y: 16 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+                }}
+                className="font-display text-plum text-display font-bold text-balance"
+              >
                 Little things,{" "}
-                <span className="bg-butter border-plum inline-block -rotate-1 rounded-2xl border-2 px-3 py-0.5 shadow-[0_4px_0_#4A3552]">
+                <span className="bg-butter border-line-strong shadow-sticker inline-block rounded-2xl border px-3 py-0.5">
                   big smiles.
                 </span>
-              </h1>
+              </motion.h1>
 
-              <p className="text-plum/90 text-body max-w-xl font-medium text-pretty sm:text-lg">
-                Pastel tableware, huggable bags, dotty journals, and ribbon-wrapped gifts that turn
-                everyday moments in Nairobi & across Kenya into pure joy.
-              </p>
+              <motion.p
+                variants={{
+                  hidden: { opacity: 0, y: 14 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+                }}
+                className="text-plum/90 text-body max-w-xl font-medium text-pretty sm:text-lg"
+              >
+                Thoughtfully crafted ceramics, modern carry goods, quiet stationery, and curated
+                gifts for intentional living in Nairobi & across Kenya.
+              </motion.p>
 
-              <div className="flex flex-col items-stretch gap-3 pt-1 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3.5">
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, y: 14 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+                }}
+                className="flex flex-col items-stretch gap-3 pt-1 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3.5"
+              >
                 <Button asChild variant="primary" size="lg" className="w-full sm:w-auto">
                   <Link href="/shop">
-                    <span>Shop Cute Finds</span>
+                    <span>Explore Collection</span>
                     <ArrowRight className="size-5" aria-hidden="true" />
                   </Link>
                 </Button>
                 <Button asChild variant="secondary" size="lg" className="w-full sm:w-auto">
                   <Link href="/gift-builder">
                     <Gift className="size-5" aria-hidden="true" />
-                    <span>Build a Gift Box (-10%)</span>
+                    <span>Build a Gift Set (-10%)</span>
                   </Link>
                 </Button>
-              </div>
+              </motion.div>
 
               {/* Mini Trust Pills */}
-              <div className="flex flex-wrap items-center gap-2.5 pt-2 text-xs font-bold sm:gap-3">
-                <span className="border-plum/25 text-plum inline-flex items-center gap-1.5 rounded-full border bg-white/85 px-3 py-1.5">
-                  🛵 Same-Day Nairobi Delivery
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, y: 10 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
+                }}
+                className="flex flex-wrap items-center gap-2.5 pt-2 text-xs font-bold sm:gap-3"
+              >
+                <span className="border-plum/25 text-plum inline-flex items-center gap-1.5 rounded-full border bg-white/85 px-3 py-1.5 transition-transform hover:-translate-y-0.5">
+                  Same-Day Nairobi Delivery
                 </span>
-                <span className="border-plum/25 text-plum inline-flex items-center gap-1.5 rounded-full border bg-white/85 px-3 py-1.5">
-                  💚 Instant M-Pesa & COD
+                <span className="border-plum/25 text-plum inline-flex items-center gap-1.5 rounded-full border bg-white/85 px-3 py-1.5 transition-transform hover:-translate-y-0.5">
+                  Instant M-Pesa & COD
                 </span>
-                <span className="border-plum/25 text-plum inline-flex items-center gap-1.5 rounded-full border bg-white/85 px-3 py-1.5">
-                  🎀 Free Sticker in Every Parcel
+                <span className="border-plum/25 text-plum inline-flex items-center gap-1.5 rounded-full border bg-white/85 px-3 py-1.5 transition-transform hover:-translate-y-0.5">
+                  Complimentary Packaging
                 </span>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
             {/* Hero Sticker Collage */}
-            <div className="relative min-w-0 lg:col-span-5">
-              <div className="washi-tape rounded-feature border-plum shadow-sticker-plum-lg relative mx-auto max-w-md border-2 bg-white p-3.5 ring-4 ring-white sm:p-5 sm:motion-safe:rotate-1">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.65, delay: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
+              className="relative min-w-0 lg:col-span-5"
+            >
+              <div className="rounded-feature border-line-strong shadow-sticker-plum-lg relative mx-auto max-w-md border bg-white p-3.5 sm:p-5">
                 <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5">
                   <Link
                     href="/products/blush-shoulder-bag"
-                    className="group border-plum/20 bg-blush/40 min-w-0 rounded-2xl border-2 p-2 transition-transform hover:scale-[1.02] sm:p-2.5"
+                    className="group border-line/60 hover:border-line-strong bg-cream/70 min-w-0 rounded-2xl border p-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-md sm:p-2.5"
                   >
                     <ProductIllustration
                       kind="shoulder-bag"
                       backdrop="blush"
                       alt="Blush Shoulder Bag"
-                      className="aspect-square"
+                      className="aspect-square transition-transform duration-300 group-hover:scale-105"
                     />
-                    <div className="mt-2 flex flex-wrap items-center justify-between gap-1">
-                      <span className="font-display text-plum text-xs font-bold">Shoulder Bag</span>
-                      <span className="font-display bg-butter border-plum text-plum rounded-lg border px-1.5 py-0.5 text-[11px] font-bold">
-                        KES 1,800
+                    <div className="mt-2 flex items-center justify-between gap-1 px-0.5">
+                      <span className="font-display text-plum text-xs font-semibold">
+                        Shoulder Bag
+                      </span>
+                      <span className="text-soft-plum text-[11px] font-medium">
+                        {formatKES(1800)}
                       </span>
                     </div>
                   </Link>
 
                   <Link
                     href="/products/pastel-ceramic-mug"
-                    className="group border-plum/20 bg-butter/40 min-w-0 rounded-2xl border-2 p-2 transition-transform hover:scale-[1.02] sm:p-2.5"
+                    className="group border-line/60 hover:border-line-strong bg-cream/70 min-w-0 rounded-2xl border p-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-md sm:p-2.5"
                   >
                     <ProductIllustration
                       kind="ceramic-mug"
                       backdrop="butter"
                       alt="Pastel Ceramic Mug"
-                      className="aspect-square"
+                      className="aspect-square transition-transform duration-300 group-hover:scale-105"
                     />
-                    <div className="mt-2 flex flex-wrap items-center justify-between gap-1">
-                      <span className="font-display text-plum text-xs font-bold">Pastel Mug</span>
-                      <span className="font-display bg-butter border-plum text-plum rounded-lg border px-1.5 py-0.5 text-[11px] font-bold">
-                        KES 650
+                    <div className="mt-2 flex items-center justify-between gap-1 px-0.5">
+                      <span className="font-display text-plum text-xs font-semibold">
+                        Pastel Mug
+                      </span>
+                      <span className="text-soft-plum text-[11px] font-medium">
+                        {formatKES(650)}
                       </span>
                     </div>
                   </Link>
 
                   <Link
                     href="/products/dotty-journal"
-                    className="group border-plum/20 bg-lavender/45 min-w-0 rounded-2xl border-2 p-2 transition-transform hover:scale-[1.02] sm:p-2.5"
+                    className="group border-line/60 hover:border-line-strong bg-cream/70 min-w-0 rounded-2xl border p-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-md sm:p-2.5"
                   >
                     <ProductIllustration
                       kind="journal"
                       backdrop="lavender"
                       alt="Dotty Journal"
-                      className="aspect-square"
+                      className="aspect-square transition-transform duration-300 group-hover:scale-105"
                     />
-                    <div className="mt-2 flex flex-wrap items-center justify-between gap-1">
-                      <span className="font-display text-plum text-xs font-bold">
+                    <div className="mt-2 flex items-center justify-between gap-1 px-0.5">
+                      <span className="font-display text-plum text-xs font-semibold">
                         Dotty Journal
                       </span>
-                      <span className="font-display bg-butter border-plum text-plum rounded-lg border px-1.5 py-0.5 text-[11px] font-bold">
-                        KES 450
+                      <span className="text-soft-plum text-[11px] font-medium">
+                        {formatKES(450)}
                       </span>
                     </div>
                   </Link>
 
                   <Link
                     href="/products/little-joy-gift-bundle"
-                    className="group border-plum/20 bg-mint/45 min-w-0 rounded-2xl border-2 p-2 transition-transform hover:scale-[1.02] sm:p-2.5"
+                    className="group border-line/60 hover:border-line-strong bg-cream/70 min-w-0 rounded-2xl border p-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-md sm:p-2.5"
                   >
                     <ProductIllustration
                       kind="gift-bundle"
                       backdrop="mint"
                       alt="Little Joy Gift Bundle"
-                      className="aspect-square"
+                      className="aspect-square transition-transform duration-300 group-hover:scale-105"
                     />
-                    <div className="mt-2 flex flex-wrap items-center justify-between gap-1">
-                      <span className="font-display text-plum text-xs font-bold">Gift Bundle</span>
-                      <span className="font-display bg-bubblegum border-plum text-plum rounded-lg border px-1.5 py-0.5 text-[11px] font-bold">
-                        KES 1,900
+                    <div className="mt-2 flex items-center justify-between gap-1 px-0.5">
+                      <span className="font-display text-plum text-xs font-semibold">
+                        Gift Bundle
+                      </span>
+                      <span className="text-soft-plum text-[11px] font-medium">
+                        {formatKES(1900)}
                       </span>
                     </div>
                   </Link>
                 </div>
 
                 {/* Floating Hang-Tag Callout */}
-                <div className="border-plum bg-mint text-plum font-display mt-3.5 flex flex-wrap items-center justify-between gap-2 rounded-2xl border-2 px-3.5 py-2.5 text-xs font-bold shadow-[0_3px_0_#4A3552] sm:mt-4 sm:px-4">
-                  <span>🎉 Free delivery over {formatKES(siteConfig.freeDeliveryThreshold)}!</span>
-                  <Link href="/shop" className="underline">
-                    Explore all 30 →
+                <div className="border-line-strong bg-mint/80 text-plum font-display shadow-sticker mt-3.5 flex flex-wrap items-center justify-between gap-2 rounded-2xl border px-3.5 py-2.5 text-xs font-bold sm:mt-4 sm:px-4">
+                  <span>Free delivery over {formatKES(siteConfig.freeDeliveryThreshold)}</span>
+                  <Link href="/shop" className="hover:text-plum/70 font-semibold transition-colors">
+                    Explore collection →
                   </Link>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -251,8 +303,8 @@ export function HomeShowcase() {
       <section aria-label="Store highlights" className="py-8">
         <div className="mx-auto max-w-(--spacing-container) px-4 sm:px-6">
           <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
-            <div className="rounded-card border-plum/25 flex items-center gap-3.5 border-2 bg-white p-4 shadow-[0_4px_0_#FFD9E8]">
-              <div className="border-plum bg-mint text-plum flex size-11 shrink-0 items-center justify-center rounded-2xl border-2">
+            <div className="rounded-card border-plum/25 shadow-sticker flex items-center gap-3.5 border bg-white p-4 transition-transform duration-200 hover:-translate-y-1">
+              <div className="border-line-strong bg-mint text-plum flex size-11 shrink-0 items-center justify-center rounded-2xl border">
                 <Truck className="size-5" aria-hidden="true" />
               </div>
               <div>
@@ -261,8 +313,8 @@ export function HomeShowcase() {
               </div>
             </div>
 
-            <div className="rounded-card border-plum/25 flex items-center gap-3.5 border-2 bg-white p-4 shadow-[0_4px_0_#FFD9E8]">
-              <div className="border-plum bg-blush text-plum flex size-11 shrink-0 items-center justify-center rounded-2xl border-2">
+            <div className="rounded-card border-plum/25 shadow-sticker flex items-center gap-3.5 border bg-white p-4 transition-transform duration-200 hover:-translate-y-1">
+              <div className="border-line-strong bg-blush text-plum flex size-11 shrink-0 items-center justify-center rounded-2xl border">
                 <Gift className="size-5" aria-hidden="true" />
               </div>
               <div>
@@ -271,8 +323,8 @@ export function HomeShowcase() {
               </div>
             </div>
 
-            <div className="rounded-card border-plum/25 flex items-center gap-3.5 border-2 bg-white p-4 shadow-[0_4px_0_#FFD9E8]">
-              <div className="border-plum bg-butter text-plum flex size-11 shrink-0 items-center justify-center rounded-2xl border-2">
+            <div className="rounded-card border-plum/25 shadow-sticker flex items-center gap-3.5 border bg-white p-4 transition-transform duration-200 hover:-translate-y-1">
+              <div className="border-line-strong bg-butter text-plum flex size-11 shrink-0 items-center justify-center rounded-2xl border">
                 <ShieldCheck className="size-5" aria-hidden="true" />
               </div>
               <div>
@@ -281,8 +333,8 @@ export function HomeShowcase() {
               </div>
             </div>
 
-            <div className="rounded-card border-plum/25 flex items-center gap-3.5 border-2 bg-white p-4 shadow-[0_4px_0_#FFD9E8]">
-              <div className="border-plum bg-lavender text-plum flex size-11 shrink-0 items-center justify-center rounded-2xl border-2">
+            <div className="rounded-card border-plum/25 shadow-sticker flex items-center gap-3.5 border bg-white p-4 transition-transform duration-200 hover:-translate-y-1">
+              <div className="border-line-strong bg-lavender text-plum flex size-11 shrink-0 items-center justify-center rounded-2xl border">
                 <Undo2 className="size-5" aria-hidden="true" />
               </div>
               <div>
@@ -299,16 +351,17 @@ export function HomeShowcase() {
         <div className="mx-auto max-w-(--spacing-container) px-4 sm:px-6">
           <div className="mb-8 flex flex-col justify-between gap-2 sm:flex-row sm:items-end">
             <div>
-              <Badge variant="lavender">6 Cute Departments</Badge>
+              <Badge variant="lavender">6 Curated Categories</Badge>
               <h2 id="home-categories" className="font-display text-plum text-h2 mt-2 font-bold">
                 Browse by Category
               </h2>
             </div>
             <Link
               href="/shop"
-              className="font-display text-plum hover:text-bubblegum-deep text-sm font-bold underline underline-offset-4"
+              className="font-display text-plum hover:text-bubblegum-deep inline-flex items-center gap-1 text-sm font-bold transition-colors"
             >
-              View all categories →
+              <span>View all categories</span>
+              <span>→</span>
             </Link>
           </div>
 
@@ -319,18 +372,20 @@ export function HomeShowcase() {
                 href={`/shop?category=${cat.slug}`}
                 className="group flex flex-col items-center text-center"
               >
-                <div className="border-plum shadow-sticker group-hover:shadow-sticker-plum relative size-28 overflow-hidden rounded-full border-2 bg-white p-2.5 ring-4 ring-white transition-all duration-200 group-hover:-translate-y-1 sm:size-32 xl:size-36">
+                <div className="border-line-strong shadow-sticker group-hover:shadow-sticker-plum relative size-28 overflow-hidden rounded-full border bg-white p-2.5 transition-all duration-300 group-hover:-translate-y-1.5 group-hover:scale-105 sm:size-32 xl:size-36">
                   <ProductIllustration
                     kind={cat.illustration}
                     backdrop={cat.backdrop}
                     alt={cat.name}
-                    className="size-full rounded-full"
+                    className="size-full rounded-full transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
-                <h3 className="font-display text-plum group-hover:text-bubblegum-deep mt-3.5 text-base font-bold">
+                <h3 className="font-display text-plum group-hover:text-bubblegum-deep mt-3.5 text-base font-bold transition-colors">
                   {cat.name}
                 </h3>
-                <span className="text-soft-plum text-xs font-medium">Explore →</span>
+                <span className="text-soft-plum group-hover:text-plum text-xs font-medium transition-colors">
+                  Explore →
+                </span>
               </Link>
             ))}
           </div>
@@ -342,9 +397,9 @@ export function HomeShowcase() {
         <div className="mx-auto max-w-(--spacing-container) px-4 sm:px-6">
           <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
             <div>
-              <Badge variant="new">Fresh Pastel Drops</Badge>
+              <Badge variant="new">Just In</Badge>
               <h2 id="home-new-arrivals" className="font-display text-plum text-h2 mt-2 font-bold">
-                New Arrivals & Sweet Restocks
+                New Arrivals & Recent Restocks
               </h2>
             </div>
 
@@ -353,7 +408,7 @@ export function HomeShowcase() {
                 type="button"
                 onClick={() => newArrivalsApi?.scrollPrev()}
                 aria-label="Previous new arrivals"
-                className="border-plum text-plum hover:bg-blush inline-flex size-11 items-center justify-center rounded-full border-2 bg-white shadow-[0_3px_0_#4A3552] active:translate-y-0.5"
+                className="border-line-strong text-plum hover:bg-blush shadow-sticker inline-flex size-11 items-center justify-center rounded-full border bg-white active:translate-y-0.5"
               >
                 <ChevronLeft className="size-5" />
               </button>
@@ -361,7 +416,7 @@ export function HomeShowcase() {
                 type="button"
                 onClick={() => newArrivalsApi?.scrollNext()}
                 aria-label="Next new arrivals"
-                className="border-plum text-plum hover:bg-blush inline-flex size-11 items-center justify-center rounded-full border-2 bg-white shadow-[0_3px_0_#4A3552] active:translate-y-0.5"
+                className="border-line-strong text-plum hover:bg-blush shadow-sticker inline-flex size-11 items-center justify-center rounded-full border bg-white active:translate-y-0.5"
               >
                 <ChevronRight className="size-5" />
               </button>
@@ -391,13 +446,13 @@ export function HomeShowcase() {
       <section aria-labelledby="home-moods" className="bg-lavender/55 py-12 md:py-16">
         <div className="mx-auto max-w-(--spacing-container) px-4 sm:px-6">
           <div className="mb-8 text-center">
-            <Badge variant="bestseller">Vibe Check ✨</Badge>
+            <Badge variant="bestseller">Curated Spaces</Badge>
             <h2 id="home-moods" className="font-display text-plum text-h2 mt-2 font-bold">
-              Shop by Mood
+              Shop by Space & Occasion
             </h2>
             <p className="text-soft-plum text-body mx-auto mt-1 max-w-xl">
-              Tap a sticker tile to filter goodies curated for your cozy corner, study desk, party
-              table, or pocket-friendly gifting.
+              Thoughtfully curated pieces designed for your living room, morning ritual, focus desk,
+              or intentional gifting.
             </p>
           </div>
 
@@ -406,7 +461,7 @@ export function HomeShowcase() {
               <Link
                 key={mood.slug}
                 href={`/shop?mood=${mood.slug}`}
-                className="washi-tape group rounded-card border-plum shadow-sticker-card hover:shadow-sticker-card-hover flex flex-col justify-between border-2 bg-white p-4 ring-4 ring-white transition-all duration-200 hover:-translate-y-1"
+                className="group rounded-card border-line-strong shadow-sticker-card hover:shadow-sticker-card-hover flex flex-col justify-between border bg-white p-4 transition-all duration-200 hover:-translate-y-1"
               >
                 <div>
                   <Badge variant="outline" className="mb-2.5 text-[11px]">
@@ -423,8 +478,9 @@ export function HomeShowcase() {
                   </h3>
                   <p className="text-soft-plum mt-1 text-xs leading-relaxed">{mood.subtitle}</p>
                 </div>
-                <span className="font-display text-plum mt-3 inline-flex items-center gap-1 text-xs font-bold underline">
-                  Shop this mood →
+                <span className="font-display text-plum group-hover:text-bubblegum-deep mt-3 inline-flex items-center gap-1.5 text-xs font-bold transition-colors">
+                  <span>Explore collection</span>
+                  <span className="transition-transform group-hover:translate-x-0.5">→</span>
                 </span>
               </Link>
             ))}
@@ -438,7 +494,7 @@ export function HomeShowcase() {
         <div className="mx-auto max-w-(--spacing-container) px-4 sm:px-6">
           <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
             <div>
-              <Badge variant="bestseller">Most Loved in Kenya ⭐</Badge>
+              <Badge variant="bestseller">Most Loved in Kenya</Badge>
               <h2 id="home-bestsellers" className="font-display text-plum text-h2 mt-2 font-bold">
                 Customer Bestsellers
               </h2>
@@ -459,18 +515,18 @@ export function HomeShowcase() {
       {/* 7. GIFT BUILDER TEASER BANNER */}
       <section aria-labelledby="home-gift-builder" className="py-8">
         <div className="mx-auto max-w-(--spacing-container) px-4 sm:px-6">
-          <div className="washi-tape rounded-feature border-plum bg-butter/65 shadow-sticker-plum-lg grid items-center gap-8 border-2 p-6 sm:p-8 lg:grid-cols-12 lg:p-10">
+          <div className="rounded-feature border-line-strong bg-butter/65 shadow-sticker-plum-lg grid items-center gap-8 border p-6 sm:p-8 lg:grid-cols-12 lg:p-10">
             <div className="space-y-4 lg:col-span-7">
               <Badge variant="sale">Automatic 10% Bundle Discount</Badge>
               <h2
                 id="home-gift-builder"
                 className="font-display text-plum text-h1 font-bold text-balance"
               >
-                Build Your Own Custom Gift Box in 3 Cute Steps!
+                Curate a Custom Gift Box in Three Simple Steps
               </h2>
               <p className="text-plum/90 text-body max-w-xl font-medium">
-                1️⃣ Pick a vessel (Mug, Mini Tote, Shoulder Bag, or Pouch) · 2️⃣ Toss in 1 or 2 little
-                extras · 3️⃣ Choose your pastel tissue wrap & write a heartfelt note card.
+                1. Select a foundation vessel (Mug, Tote, Bag, or Pouch) · 2. Pair with
+                complementary studio essentials · 3. We wrap in archival tissue with a bespoke note.
               </p>
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <Button asChild variant="primary" size="lg">
@@ -479,22 +535,26 @@ export function HomeShowcase() {
                     <span>Launch Gift Builder</span>
                   </Link>
                 </Button>
-                <HangTagPrice price={1450} compareAtPrice={1650} size="md" />
+                <div className="flex items-center gap-2 text-sm">
+                  <span className="text-soft-plum text-xs">Curated sets from</span>
+                  <span className="font-display text-plum font-bold">{formatKES(1450)}</span>
+                  <span className="text-soft-plum text-xs line-through">{formatKES(1650)}</span>
+                </div>
               </div>
             </div>
 
             <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-3 lg:col-span-5">
-              <div className="border-plum rounded-2xl border-2 bg-white p-2.5 text-center shadow-[0_4px_0_#4A3552] motion-safe:-rotate-2">
+              <div className="border-line-strong shadow-sticker rounded-2xl border bg-white p-2.5 text-center">
                 <ProductIllustration kind="ceramic-mug" backdrop="blush" alt="Step 1 Vessel" />
                 <p className="font-display text-plum mt-2 text-xs font-bold">1. Pick Vessel</p>
               </div>
-              <div className="border-plum rounded-2xl border-2 bg-white p-2.5 text-center shadow-[0_4px_0_#4A3552] motion-safe:rotate-1">
+              <div className="border-line-strong shadow-sticker rounded-2xl border bg-white p-2.5 text-center">
                 <ProductIllustration kind="journal" backdrop="lavender" alt="Step 2 Extras" />
-                <p className="font-display text-plum mt-2 text-xs font-bold">2. Add Extras</p>
+                <p className="font-display text-plum mt-2 text-xs font-bold">2. Add Essentials</p>
               </div>
-              <div className="border-plum rounded-2xl border-2 bg-white p-2.5 text-center shadow-[0_4px_0_#4A3552] motion-safe:-rotate-1">
+              <div className="border-line-strong shadow-sticker rounded-2xl border bg-white p-2.5 text-center">
                 <ProductIllustration kind="gift-bundle" backdrop="mint" alt="Step 3 Wrap & Card" />
-                <p className="font-display text-plum mt-2 text-xs font-bold">3. Bow & Note</p>
+                <p className="font-display text-plum mt-2 text-xs font-bold">3. Wrap & Note</p>
               </div>
             </div>
           </div>
@@ -508,7 +568,7 @@ export function HomeShowcase() {
             <div>
               <Badge variant="new">4.9 ★ Average from Kenyan Shoppers</Badge>
               <h2 id="home-reviews" className="font-display text-plum text-h2 mt-2 font-bold">
-                Sweet Words from Happy Homes
+                Reflections from Our Community
               </h2>
             </div>
 
@@ -517,7 +577,7 @@ export function HomeShowcase() {
                 type="button"
                 onClick={() => reviewsApi?.scrollPrev()}
                 aria-label="Previous customer review"
-                className="border-plum text-plum hover:bg-blush inline-flex size-11 items-center justify-center rounded-full border-2 bg-white shadow-[0_3px_0_#4A3552]"
+                className="border-line-strong text-plum hover:bg-blush shadow-sticker inline-flex size-11 items-center justify-center rounded-full border bg-white"
               >
                 <ChevronLeft className="size-5" />
               </button>
@@ -525,7 +585,7 @@ export function HomeShowcase() {
                 type="button"
                 onClick={() => reviewsApi?.scrollNext()}
                 aria-label="Next customer review"
-                className="border-plum text-plum hover:bg-blush inline-flex size-11 items-center justify-center rounded-full border-2 bg-white shadow-[0_3px_0_#4A3552]"
+                className="border-line-strong text-plum hover:bg-blush shadow-sticker inline-flex size-11 items-center justify-center rounded-full border bg-white"
               >
                 <ChevronRight className="size-5" />
               </button>
@@ -539,7 +599,7 @@ export function HomeShowcase() {
                   key={rev.id}
                   className="min-w-0 shrink-0 grow-0 basis-[85%] py-1 pl-4 sm:basis-1/2 sm:pl-5 lg:basis-1/3"
                 >
-                  <article className="rounded-card border-plum shadow-sticker flex h-full flex-col justify-between border-2 bg-white p-5">
+                  <article className="rounded-card border-line-strong shadow-sticker flex h-full flex-col justify-between border bg-white p-5">
                     <div>
                       <div className="flex items-center justify-between gap-2">
                         <div
@@ -574,7 +634,7 @@ export function HomeShowcase() {
                       </p>
                       <Link
                         href={`/products/${rev.productSlug}`}
-                        className="font-display text-bubblegum-deep mt-1 inline-block font-bold underline"
+                        className="font-display text-bubblegum-deep hover:text-plum mt-1 inline-block font-semibold transition-colors"
                       >
                         Purchased: {rev.productName} →
                       </Link>
@@ -593,11 +653,11 @@ export function HomeShowcase() {
           <div className="mb-6 text-center">
             <Badge variant="lavender">{siteConfig.contact.instagramHandle}</Badge>
             <h2 id="home-insta" className="font-display text-plum text-h2 mt-2 font-bold">
-              Spotted in Cute Kenyan Spaces
+              Living with Whimsy
             </h2>
             <p className="text-soft-plum text-small mt-1">
-              Tag <strong>{siteConfig.contact.instagramHandle}</strong> on Instagram or TikTok to be
-              featured on our pastel wall!
+              Tag <strong>{siteConfig.contact.instagramHandle}</strong> on Instagram to share how
+              you style our pieces in your space.
             </p>
           </div>
 
@@ -606,7 +666,7 @@ export function HomeShowcase() {
               <Link
                 key={item.slug}
                 href={`/products/${item.slug}`}
-                className="group border-plum relative overflow-hidden rounded-2xl border-2 bg-white p-2 shadow-[0_4px_0_#FFD9E8] transition-transform hover:-translate-y-1"
+                className="group border-line-strong shadow-sticker relative overflow-hidden rounded-2xl border bg-white p-2 transition-transform hover:-translate-y-1"
               >
                 <ProductIllustration
                   kind={item.illustration}
@@ -650,9 +710,10 @@ export function HomeShowcase() {
           <div className="mt-6 text-center">
             <Link
               href="/faq"
-              className="font-display text-plum hover:text-bubblegum-deep text-sm font-bold underline underline-offset-4"
+              className="font-display text-plum hover:text-bubblegum-deep inline-flex items-center gap-1.5 text-sm font-bold transition-colors"
             >
-              Read all FAQs & Delivery Policies →
+              <span>Read all FAQs & Delivery Policies</span>
+              <span>→</span>
             </Link>
           </div>
         </div>
@@ -662,20 +723,20 @@ export function HomeShowcase() {
       <Dialog open={welcomeOpen} onOpenChange={handleCloseWelcome}>
         <DialogContent className="text-center sm:max-w-md">
           <div className="mx-auto">
-            <BowMascot mood="happy" size="lg" />
+            <BrandGlyph mood="happy" size="lg" />
           </div>
           <DialogHeader className="text-center sm:text-center">
             <Badge variant="bestseller" className="mx-auto mb-1 w-fit">
-              Karibu Gift Just for You 🎀
+              Welcome to Whimsy.KE
             </Badge>
-            <DialogTitle className="text-h2">Take 10% Off Your First Cute Order!</DialogTitle>
+            <DialogTitle className="text-h2">Enjoy 10% Off Your First Order</DialogTitle>
             <DialogDescription className="text-body pt-1">
-              Welcome to <strong>Whimsy.KE</strong>! Copy your secret welcome code below and pop it
-              into checkout for an instant 10% smile discount.
+              Welcome to <strong>Whimsy.KE</strong>. Use code <strong>WHIMSY10</strong> at checkout
+              for 10% off your initial order.
             </DialogDescription>
           </DialogHeader>
 
-          <div className="border-plum bg-butter/60 my-2 flex items-center justify-between rounded-2xl border-2 border-dashed p-3.5">
+          <div className="border-line-strong bg-butter/60 my-2 flex items-center justify-between rounded-2xl border border-dashed p-3.5">
             <div className="text-left">
               <span className="text-soft-plum block text-[11px] font-bold uppercase">
                 Promo Code
@@ -707,7 +768,7 @@ export function HomeShowcase() {
             className="w-full"
           >
             <Sparkles className="size-4" />
-            <span>Start Exploring Cute Things</span>
+            <span>Explore the Collection</span>
           </Button>
         </DialogContent>
       </Dialog>

@@ -48,9 +48,9 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
             <Link
               key={c.slug}
               href={`/collections/${c.slug}`}
-              className={`font-display rounded-full border-2 px-3.5 py-1 text-xs font-bold transition-all ${
+              className={`font-display rounded-full border px-3.5 py-1 text-xs font-bold transition-all ${
                 c.slug === slug
-                  ? "border-plum bg-bubblegum text-plum shadow-[0_2px_0_#4A3552]"
+                  ? "border-line-strong bg-bubblegum text-plum shadow-sticker"
                   : "border-plum/25 bg-cream text-plum hover:bg-blush/50"
               }`}
             >

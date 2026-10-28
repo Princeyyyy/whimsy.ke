@@ -1,6 +1,6 @@
-import type { Metadata, Viewport } from "next";
+﻿import type { Metadata, Viewport } from "next";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
-import { fredoka, quicksand } from "@/lib/fonts";
+import { bricolage, hanken } from "@/lib/fonts";
 import { siteConfig } from "@/config/site";
 import { copy } from "@/config/i18n";
 import { env } from "@/env";
@@ -14,7 +14,7 @@ import { StickerToaster } from "@/components/ui/toaster";
 import "@/styles/globals.css";
 
 export const viewport: Viewport = {
-  themeColor: "#FFF8F2",
+  themeColor: "#F8F4F3",
   width: "device-width",
   initialScale: 1,
 };
@@ -22,7 +22,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — ${siteConfig.slogan}`,
+    default: `${siteConfig.name} â€” ${siteConfig.slogan}`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: siteConfig.locale,
     siteName: siteConfig.name,
-    title: `${siteConfig.name} — ${siteConfig.slogan}`,
+    title: `${siteConfig.name} â€” ${siteConfig.slogan}`,
     description: siteConfig.description,
   },
 };
@@ -44,15 +44,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${fredoka.variable} ${quicksand.variable}`}
-      suppressHydrationWarning
-    >
+    <html lang="en" className={`${bricolage.variable} ${hanken.variable}`} suppressHydrationWarning>
       <body className="flex min-h-dvh flex-col antialiased">
         <a
           href="#main-content"
-          className="font-display border-plum bg-butter text-plum sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:border-2 focus:px-4 focus:py-2 focus:font-bold focus:shadow-[0_4px_0_#4A3552]"
+          className="font-display border-line-strong bg-butter text-plum focus:shadow-sticker sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:border focus:px-4 focus:py-2 focus:font-bold"
         >
           {copy.header.skipToContent}
         </a>

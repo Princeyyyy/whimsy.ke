@@ -15,7 +15,7 @@ import {
   useShopStore,
   type CartItem,
 } from "@/features/cart/store";
-import { BowMascot } from "@/illustrations/bow-mascot";
+import { BrandGlyph } from "@/illustrations/brand-glyph";
 import { ProductIllustration } from "@/illustrations/product-illustrations";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/controls";
@@ -73,8 +73,8 @@ export function BagDrawer() {
           aria-describedby={undefined}
           className={
             isDesktop
-              ? "border-plum bg-cream fixed top-0 right-0 bottom-0 z-50 flex h-dvh w-full max-w-md flex-col border-l-2 shadow-2xl outline-none"
-              : "border-plum bg-cream fixed right-0 bottom-0 left-0 z-50 flex max-h-[90dvh] flex-col rounded-t-[28px] border-t-2 outline-none"
+              ? "border-line-strong bg-cream fixed top-0 right-0 bottom-0 z-50 flex h-dvh w-full max-w-md flex-col border-l shadow-2xl outline-none"
+              : "border-line-strong bg-cream fixed right-0 bottom-0 left-0 z-50 flex max-h-[90dvh] flex-col rounded-t-[28px] border-t outline-none"
           }
         >
           {!isDesktop && (
@@ -86,7 +86,7 @@ export function BagDrawer() {
             <Drawer.Title className="font-display text-plum flex items-center gap-2 text-xl font-bold">
               <ShoppingBag className="size-5" aria-hidden="true" />
               <span>{copy.cart.title}</span>
-              <span className="border-plum bg-butter text-plum rounded-full border-2 px-2.5 py-0.5 text-xs">
+              <span className="border-line-strong bg-butter text-plum rounded-full border px-2.5 py-0.5 text-xs">
                 {bagItems.reduce((sum, i) => sum + i.quantity, 0)}
               </span>
             </Drawer.Title>
@@ -94,7 +94,7 @@ export function BagDrawer() {
               <button
                 type="button"
                 aria-label="Close gift bag"
-                className="border-plum text-plum hover:bg-blush inline-flex size-10 items-center justify-center rounded-full border-2 bg-white shadow-[0_2px_0_#4A3552]"
+                className="border-line-strong text-plum hover:bg-blush shadow-sticker inline-flex size-10 items-center justify-center rounded-full border bg-white"
               >
                 <X className="size-4" />
               </button>
@@ -112,9 +112,9 @@ export function BagDrawer() {
               </span>
               <span className="font-display text-plum">{totals.freeDeliveryProgressPercent}%</span>
             </div>
-            <div className="border-plum mt-1.5 h-2.5 w-full overflow-hidden rounded-full border bg-white">
+            <div className="border-line-strong mt-1.5 h-2.5 w-full overflow-hidden rounded-full border bg-white">
               <div
-                className="bg-bubblegum h-full transition-all duration-300"
+                className="bg-bubblegum h-full transition-all duration-500 ease-out"
                 style={{ width: `${totals.freeDeliveryProgressPercent}%` }}
               />
             </div>
@@ -123,7 +123,7 @@ export function BagDrawer() {
           {/* Body */}
           {bagItems.length === 0 ? (
             <div className="flex flex-1 flex-col items-center justify-center px-6 py-12 text-center">
-              <BowMascot mood="sleepy" size="lg" />
+              <BrandGlyph mood="sleepy" size="lg" />
               <h3 className="font-display text-plum text-h3 mt-4 font-bold">
                 {copy.cart.emptyTitle}
               </h3>
@@ -146,7 +146,7 @@ export function BagDrawer() {
                   {bagItems.map((item) => (
                     <li
                       key={item.key}
-                      className="border-plum/25 flex gap-3 rounded-2xl border-2 bg-white p-3 shadow-[0_3px_0_#FFD9E8]"
+                      className="border-plum/25 shadow-sticker flex gap-3 rounded-2xl border bg-white p-3"
                     >
                       <Link
                         href={`/products/${item.slug}`}
@@ -178,7 +178,7 @@ export function BagDrawer() {
                             )}
                             {item.giftNote && (
                               <p className="text-plum bg-butter/40 mt-1 rounded-lg px-2 py-0.5 text-[11px] font-medium">
-                                💌 Gift note: &ldquo;{item.giftNote}&rdquo;
+                                Gift note: &ldquo;{item.giftNote}&rdquo;
                               </p>
                             )}
                           </div>
@@ -194,7 +194,7 @@ export function BagDrawer() {
 
                         <div className="mt-2 flex items-center justify-between">
                           {/* Quantity Stepper */}
-                          <div className="border-plum bg-cream inline-flex items-center rounded-full border-2">
+                          <div className="border-line-strong bg-cream inline-flex items-center rounded-full border">
                             <button
                               type="button"
                               aria-label={`Decrease quantity of ${item.name}`}
@@ -230,7 +230,7 @@ export function BagDrawer() {
                 </ul>
 
                 {/* Gift Wrap Toggle & Order Note */}
-                <div className="border-plum/25 bg-lavender/35 space-y-3 rounded-2xl border-2 p-3.5">
+                <div className="border-plum/25 bg-lavender/35 space-y-3 rounded-2xl border p-3.5">
                   <div className="flex items-start gap-3">
                     <Checkbox
                       id="bag-gift-wrap"
@@ -267,7 +267,7 @@ export function BagDrawer() {
                       value={orderNote}
                       onChange={(e) => setOrderNote(e.target.value)}
                       placeholder={copy.cart.orderNotePlaceholder}
-                      className="border-plum/30 text-plum placeholder:text-soft-plum/70 focus-visible:border-plum w-full rounded-xl border-2 bg-white px-3 py-2 text-xs font-medium focus-visible:outline-none"
+                      className="border-plum/30 text-plum placeholder:text-soft-plum/70 focus-visible:border-line-strong w-full rounded-xl border bg-white px-3 py-2 text-xs font-medium focus-visible:outline-none"
                     />
                   </div>
                 </div>
@@ -276,13 +276,13 @@ export function BagDrawer() {
                 {addonSuggestions.length > 0 && (
                   <div className="pt-1">
                     <p className="font-display text-soft-plum mb-2 text-xs font-bold tracking-wider uppercase">
-                      Little Extras Under KES 650 ✨
+                      Little Extras Under KES 650{" "}
                     </p>
                     <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
                       {addonSuggestions.map((addon) => (
                         <div
                           key={addon.slug}
-                          className="border-plum/20 flex items-center gap-2 rounded-2xl border-2 bg-white p-2"
+                          className="border-plum/20 flex items-center gap-2 rounded-2xl border bg-white p-2"
                         >
                           <div className="size-12 shrink-0">
                             <ProductIllustration
@@ -312,9 +312,9 @@ export function BagDrawer() {
                                 });
                                 toast.success(copy.cart.addedToast(addon.name));
                               }}
-                              className="font-display text-bubblegum-deep mt-0.5 text-xs font-bold underline"
+                              className="font-display text-bubblegum-deep hover:text-plum mt-0.5 text-xs font-bold transition-colors"
                             >
-                              + Toss in
+                              + Add
                             </button>
                           </div>
                         </div>
@@ -325,7 +325,7 @@ export function BagDrawer() {
               </div>
 
               {/* Sticky Footer Actions */}
-              <div className="border-plum/20 pb-safe space-y-3 border-t-2 bg-white px-5 pt-4">
+              <div className="border-plum/20 pb-safe space-y-3 border-t bg-white px-5 pt-4">
                 <div className="space-y-1 text-sm">
                   {giftWrap && (
                     <div className="text-soft-plum flex justify-between text-xs font-semibold">

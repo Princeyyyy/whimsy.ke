@@ -14,7 +14,7 @@ export const AccordionItem = React.forwardRef<
   <AccordionPrimitive.Item
     ref={ref}
     className={cn(
-      "rounded-card border-plum/25 data-[state=open]:border-plum mb-3 overflow-hidden border-2 bg-white shadow-[0_4px_0_#FFD9E8] transition-colors",
+      "rounded-card border-plum/25 data-[state=open]:border-line-strong shadow-sticker mb-3 overflow-hidden border bg-white transition-colors",
       className,
     )}
     {...props}

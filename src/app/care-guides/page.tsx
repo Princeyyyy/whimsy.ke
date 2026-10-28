@@ -16,7 +16,7 @@ export default function CareGuidesPage() {
     <div className="pb-16">
       <section className="bg-blush/55 border-plum/15 border-b py-10">
         <div className="mx-auto max-w-(--spacing-container) px-4 sm:px-6">
-          <Badge variant="bestseller">Keep Everything Cute ✨</Badge>
+          <Badge variant="bestseller">Longevity & Care</Badge>
           <h1 className="font-display text-plum text-h1 mt-2 font-bold">Whimsy Care Guides</h1>
           <p className="text-soft-plum text-body mt-1 max-w-xl">
             Two quick guides written by our Nairobi studio team to keep your pastel ceramics and
@@ -28,7 +28,7 @@ export default function CareGuidesPage() {
 
       <div className="mx-auto mt-10 max-w-4xl space-y-10 px-4 sm:px-6">
         {/* Article 1: Ceramic Tableware Care */}
-        <article className="washi-tape rounded-feature border-plum shadow-sticker grid gap-6 border-2 bg-white p-6 sm:p-8 md:grid-cols-12">
+        <article className="rounded-feature border-line-strong shadow-sticker grid gap-6 border bg-white p-6 sm:p-8 md:grid-cols-12">
           <div className="md:col-span-4">
             <ProductIllustration kind="ceramic-mug" backdrop="butter" alt="Pastel Ceramic Mug" />
           </div>
@@ -66,7 +66,7 @@ export default function CareGuidesPage() {
         </article>
 
         {/* Article 2: Pastel Bags & Quilted Pouches Care */}
-        <article className="washi-tape rounded-feature border-plum shadow-sticker grid gap-6 border-2 bg-white p-6 sm:p-8 md:grid-cols-12">
+        <article className="rounded-feature border-line-strong shadow-sticker grid gap-6 border bg-white p-6 sm:p-8 md:grid-cols-12">
           <div className="md:col-span-4">
             <ProductIllustration kind="shoulder-bag" backdrop="blush" alt="Blush Shoulder Bag" />
           </div>

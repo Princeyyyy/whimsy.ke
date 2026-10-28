@@ -22,9 +22,7 @@ export default function Icon() {
         fontWeight: 800,
         color: "#4A3552",
       }}
-    >
-      🎀
-    </div>,
+    ></div>,
     {
       ...size,
     },

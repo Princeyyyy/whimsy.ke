@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import { Clock, Mail, MapPin, MessageCircle, Phone, Send } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { isValidKenyanPhone, normalizeKenyanPhone } from "@/lib/formatters";
-import { BowMascot } from "@/illustrations/bow-mascot";
+import { BrandGlyph } from "@/illustrations/brand-glyph";
 import { ScallopDivider } from "@/illustrations/scallop-divider";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -53,14 +53,14 @@ export function ContactView() {
   async function onSubmit(_values: ContactFormValues) {
     await new Promise((r) => setTimeout(r, 500));
     setSubmitted(true);
-    toast.success("Asante! We've received your message and will reply shortly 💕");
+    toast.success("Asante! We've received your message and will reply shortly");
   }
 
   return (
     <div className="pb-16">
       <section className="bg-blush/55 border-plum/15 border-b py-10">
         <div className="mx-auto max-w-(--spacing-container) px-4 sm:px-6">
-          <Badge variant="bestseller">Say Hujambo! 💌</Badge>
+          <Badge variant="bestseller">Say Hujambo!</Badge>
           <h1 className="font-display text-plum text-h1 mt-2 font-bold">
             Contact Our Nairobi Studio
           </h1>
@@ -76,7 +76,7 @@ export function ContactView() {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
           {/* Contact Cards */}
           <div className="space-y-4 lg:col-span-5">
-            <div className="rounded-card border-plum shadow-sticker space-y-4 border-2 bg-white p-6">
+            <div className="rounded-card border-line-strong shadow-sticker space-y-4 border bg-white p-6">
               <h2 className="font-display text-plum text-h3 font-bold">Direct Channels</h2>
               <div className="space-y-3 text-sm">
                 <p className="flex items-center gap-3">
@@ -124,12 +124,12 @@ export function ContactView() {
 
           {/* Form */}
           <div className="lg:col-span-7">
-            <div className="rounded-feature border-plum shadow-sticker-plum border-2 bg-white p-6 sm:p-8">
+            <div className="rounded-feature border-line-strong shadow-sticker-plum border bg-white p-6 sm:p-8">
               {submitted ? (
                 <div className="flex flex-col items-center py-8 text-center">
-                  <BowMascot mood="happy" size="lg" />
+                  <BrandGlyph mood="happy" size="lg" />
                   <h2 className="font-display text-plum text-h2 mt-4 font-bold">
-                    Asante sana! Your note is in our inbox 🎀
+                    Asante sana! Your note is in our inbox{" "}
                   </h2>
                   <p className="text-soft-plum text-body mt-1 max-w-md">
                     Our Kilimani team typically replies within 1 business hour on WhatsApp and
@@ -213,7 +213,7 @@ export function ContactView() {
                       <Label htmlFor="contact-topic">How Can We Help?</Label>
                       <select
                         id="contact-topic"
-                        className="border-plum/40 text-plum font-display flex min-h-12 w-full rounded-2xl border-2 bg-white px-4 py-2.5 text-sm font-semibold shadow-[0_3px_0_#FFD9E8]"
+                        className="border-plum/40 text-plum font-display shadow-sticker flex min-h-12 w-full rounded-2xl border bg-white px-4 py-2.5 text-sm font-semibold"
                         {...register("topic")}
                       >
                         <option value="Order or Delivery Question">

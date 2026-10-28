@@ -21,7 +21,7 @@ export function MobileBottomNavAndWhatsApp() {
   const totalBagCount = hydrated ? items.reduce((sum, item) => sum + item.quantity, 0) : 0;
 
   const whatsappHref = `https://wa.me/${siteConfig.contact.whatsappRaw}?text=${encodeURIComponent(
-    "Hujambo Whimsy.KE! 🎀 I'm browsing your cute shop and had a quick question.",
+    "Hujambo Whimsy.KE! I'm browsing your collection and had an inquiry regarding an item.",
   )}`;
 
   return (
@@ -32,7 +32,7 @@ export function MobileBottomNavAndWhatsApp() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with Whimsy.KE on WhatsApp"
-        className="border-plum bg-mint text-plum hover:bg-mint-hover fixed right-4 bottom-22 z-30 inline-flex min-h-12 items-center gap-2 rounded-full border-2 px-4 py-2.5 shadow-[0_4px_0_#4A3552] transition-transform hover:-translate-y-0.5 active:translate-y-0.5 lg:right-6 lg:bottom-6"
+        className="border-line-strong bg-mint text-plum hover:bg-mint-hover shadow-sticker fixed right-4 bottom-22 z-30 inline-flex min-h-12 items-center gap-2 rounded-full border px-4 py-2.5 transition-transform hover:-translate-y-0.5 active:translate-y-0.5 lg:right-6 lg:bottom-6"
       >
         <MessageCircle className="fill-plum/10 size-5 shrink-0" aria-hidden="true" />
         <span className="font-display text-xs font-bold sm:text-sm">WhatsApp Us</span>
@@ -41,7 +41,7 @@ export function MobileBottomNavAndWhatsApp() {
       {/* Sticky Bottom Tab Bar (Mobile & Tablet only) */}
       <nav
         aria-label="Mobile quick navigation"
-        className="border-plum bg-cream/95 pb-safe fixed right-0 bottom-0 left-0 z-30 border-t-2 backdrop-blur-md lg:hidden"
+        className="border-line-strong bg-cream/95 pb-safe fixed right-0 bottom-0 left-0 z-30 border-t backdrop-blur-md lg:hidden"
       >
         <div className="mx-auto grid h-16 max-w-md grid-cols-4 items-center px-2">
           <Link
@@ -85,7 +85,7 @@ export function MobileBottomNavAndWhatsApp() {
             <div className="relative">
               <ShoppingBag className="size-5" aria-hidden="true" />
               {totalBagCount > 0 && (
-                <span className="border-plum bg-bubblegum text-plum absolute -top-1.5 -right-2.5 flex size-4.5 items-center justify-center rounded-full border text-[10px] font-bold">
+                <span className="border-line-strong bg-bubblegum text-plum absolute -top-1.5 -right-2.5 flex size-4.5 items-center justify-center rounded-full border text-[10px] font-bold">
                   {totalBagCount}
                 </span>
               )}

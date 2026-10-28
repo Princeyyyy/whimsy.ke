@@ -39,7 +39,7 @@ export function AdminDashboardView() {
         <div className="mx-auto max-w-(--spacing-container) px-4 sm:px-6">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
-              <Badge variant="bestseller">Read-Only Stakeholder Demo 📊</Badge>
+              <Badge variant="bestseller">Read-Only Stakeholder Demo</Badge>
               <h1 className="font-display text-plum text-h1 mt-2 font-bold">
                 Whimsy.KE Studio Dashboard
               </h1>
@@ -59,7 +59,7 @@ export function AdminDashboardView() {
       <div className="mx-auto mt-8 max-w-(--spacing-container) space-y-8 px-4 sm:px-6">
         {/* Top KPI Cards */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="rounded-card border-plum shadow-sticker border-2 bg-white p-5">
+          <div className="rounded-card border-line-strong shadow-sticker border bg-white p-5">
             <div className="flex items-center justify-between">
               <span className="text-soft-plum text-xs font-bold uppercase">7-Day Demo Revenue</span>
               <TrendingUp className="text-plum size-5" />
@@ -70,7 +70,7 @@ export function AdminDashboardView() {
             </span>
           </div>
 
-          <div className="rounded-card border-plum shadow-sticker border-2 bg-white p-5">
+          <div className="rounded-card border-line-strong shadow-sticker border bg-white p-5">
             <div className="flex items-center justify-between">
               <span className="text-soft-plum text-xs font-bold uppercase">
                 Active Local Orders
@@ -83,20 +83,20 @@ export function AdminDashboardView() {
             </span>
           </div>
 
-          <div className="rounded-card border-plum shadow-sticker border-2 bg-white p-5">
+          <div className="rounded-card border-line-strong shadow-sticker border bg-white p-5">
             <div className="flex items-center justify-between">
               <span className="text-soft-plum text-xs font-bold uppercase">Catalog SKUs</span>
               <Package className="text-plum size-5" />
             </div>
             <p className="font-display text-plum mt-2 text-2xl font-bold">
-              {allProducts.length} Cute Items
+              {allProducts.length} Active SKUs
             </p>
             <span className="text-soft-plum mt-2 block text-xs font-semibold">
               Across 6 departments
             </span>
           </div>
 
-          <div className="rounded-card border-plum shadow-sticker border-2 bg-white p-5">
+          <div className="rounded-card border-line-strong shadow-sticker border bg-white p-5">
             <div className="flex items-center justify-between">
               <span className="text-soft-plum text-xs font-bold uppercase">Restock Alerts</span>
               <AlertTriangle className="text-error size-5" />
@@ -112,7 +112,7 @@ export function AdminDashboardView() {
 
         {/* Weekly Sales Bar Chart + Low Stock Alerts */}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
-          <section className="rounded-feature border-plum shadow-sticker border-2 bg-white p-6 lg:col-span-7">
+          <section className="rounded-feature border-line-strong shadow-sticker border bg-white p-6 lg:col-span-7">
             <div className="mb-6 flex items-center justify-between">
               <div>
                 <h2 className="font-display text-plum flex items-center gap-2 text-lg font-bold">
@@ -138,7 +138,7 @@ export function AdminDashboardView() {
                       {(item.revenue / 1000).toFixed(1)}k
                     </span>
                     <div
-                      className="border-plum bg-bubblegum hover:bg-butter w-full rounded-t-xl border-2 transition-all"
+                      className="border-line-strong bg-bubblegum hover:bg-butter w-full rounded-t-xl border transition-all"
                       style={{ height: `${heightPct}%` }}
                     />
                     <span className="font-display text-soft-plum text-xs font-bold">
@@ -151,7 +151,7 @@ export function AdminDashboardView() {
           </section>
 
           {/* Low Stock & Sold Out List */}
-          <section className="rounded-feature border-plum shadow-sticker border-2 bg-white p-6 lg:col-span-5">
+          <section className="rounded-feature border-line-strong shadow-sticker border bg-white p-6 lg:col-span-5">
             <h2 className="font-display text-plum mb-4 text-lg font-bold">
               Low-Stock & Sold-Out Watchlist
             </h2>
@@ -189,14 +189,14 @@ export function AdminDashboardView() {
         </div>
 
         {/* Recent Local Orders Table */}
-        <section className="rounded-feature border-plum shadow-sticker border-2 bg-white p-6">
+        <section className="rounded-feature border-line-strong shadow-sticker border bg-white p-6">
           <h2 className="font-display text-plum mb-4 text-lg font-bold">
             Recent Orders (Persisted in Browser)
           </h2>
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
               <thead>
-                <tr className="border-blush text-plum font-display border-b-2">
+                <tr className="border-blush text-plum font-display border-b">
                   <th className="py-3 pr-4">Order #</th>
                   <th className="px-4 py-3">Customer</th>
                   <th className="px-4 py-3">Zone</th>
@@ -211,7 +211,7 @@ export function AdminDashboardView() {
                     <td className="font-display text-plum py-3 pr-4 font-bold">
                       <Link
                         href={`/track?order=${encodeURIComponent(o.orderNumber)}&phone=${encodeURIComponent(o.phone)}`}
-                        className="underline"
+                        className="hover:text-bubblegum-deep font-semibold transition-colors"
                       >
                         {o.orderNumber}
                       </Link>

@@ -48,7 +48,7 @@ export default function OpenGraphImage() {
             marginBottom: "20px",
           }}
         >
-          Karibu to Kenya&apos;s Cutest Shop ✨
+          Curated Lifestyle Goods · Nairobi, Kenya
         </div>
         <div
           style={{

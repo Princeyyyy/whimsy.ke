@@ -14,7 +14,7 @@ export const Checkbox = React.forwardRef<
   <CheckboxPrimitive.Root
     ref={ref}
     className={cn(
-      "border-plum data-[state=checked]:bg-bubblegum text-plum peer flex size-6 shrink-0 items-center justify-center rounded-lg border-2 bg-white shadow-[0_2px_0_#4A3552] transition-colors disabled:cursor-not-allowed disabled:opacity-50",
+      "border-line-strong data-[state=checked]:bg-bubblegum text-plum peer shadow-sticker flex size-6 shrink-0 items-center justify-center rounded-lg border bg-white transition-colors disabled:cursor-not-allowed disabled:opacity-50",
       className,
     )}
     {...props}
@@ -41,13 +41,13 @@ export const RadioGroupItem = React.forwardRef<
   <RadioGroupPrimitive.Item
     ref={ref}
     className={cn(
-      "border-plum text-plum aspect-square size-6 rounded-full border-2 bg-white shadow-[0_2px_0_#4A3552] disabled:cursor-not-allowed disabled:opacity-50",
+      "border-line-strong text-plum shadow-sticker aspect-square size-6 rounded-full border bg-white disabled:cursor-not-allowed disabled:opacity-50",
       className,
     )}
     {...props}
   >
     <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
-      <span className="bg-bubblegum border-plum size-3 rounded-full border" />
+      <span className="bg-bubblegum border-line-strong size-3 rounded-full border" />
     </RadioGroupPrimitive.Indicator>
   </RadioGroupPrimitive.Item>
 ));
@@ -62,12 +62,12 @@ export const Slider = React.forwardRef<
     className={cn("relative flex w-full touch-none items-center py-3 select-none", className)}
     {...props}
   >
-    <SliderPrimitive.Track className="border-plum relative h-3 w-full grow overflow-hidden rounded-full border-2 bg-white">
+    <SliderPrimitive.Track className="border-line-strong relative h-3 w-full grow overflow-hidden rounded-full border bg-white">
       <SliderPrimitive.Range className="bg-bubblegum absolute h-full" />
     </SliderPrimitive.Track>
     <SliderPrimitive.Thumb
       aria-label="Price range slider handle"
-      className="border-plum bg-butter block size-6 rounded-full border-2 shadow-[0_2px_0_#4A3552] transition-transform hover:scale-110"
+      className="border-line-strong bg-butter shadow-sticker block size-6 rounded-full border transition-transform hover:scale-110"
     />
   </SliderPrimitive.Root>
 ));

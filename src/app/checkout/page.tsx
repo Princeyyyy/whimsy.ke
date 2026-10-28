@@ -5,7 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export const metadata: Metadata = {
   title: "Checkout — M-Pesa & Cash on Delivery",
-  description: "Complete your cute Whimsy.KE order with M-Pesa STK or Cash on Delivery.",
+  description: "Complete your Whimsy.KE order with M-Pesa STK or Cash on Delivery.",
 };
 
 export default function CheckoutPage() {

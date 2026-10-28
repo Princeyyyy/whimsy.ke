@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { copy } from "@/config/i18n";
-import { BowMascot } from "@/illustrations/bow-mascot";
+import { BrandGlyph } from "@/illustrations/brand-glyph";
 import { Button } from "@/components/ui/button";
 
 export default function GlobalError({
@@ -19,8 +19,8 @@ export default function GlobalError({
 
   return (
     <div className="mx-auto max-w-xl px-4 py-20 text-center sm:px-6">
-      <div className="washi-tape rounded-feature border-plum shadow-sticker-plum-lg flex flex-col items-center border-2 bg-white p-8 sm:p-10">
-        <BowMascot mood="confused" size="xl" />
+      <div className="rounded-feature border-line-strong shadow-sticker-plum-lg flex flex-col items-center border bg-white p-8 sm:p-10">
+        <BrandGlyph mood="confused" size="xl" />
         <h1 className="font-display text-plum text-h2 mt-4 font-bold">
           {copy.errors.genericErrorTitle}
         </h1>

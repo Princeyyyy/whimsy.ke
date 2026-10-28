@@ -40,7 +40,7 @@ export const DialogContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        "rounded-feature border-plum bg-cream shadow-sticker-plum-lg fixed top-1/2 left-1/2 z-50 grid max-h-[90dvh] w-[calc(100vw-1.5rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 overflow-y-auto border-2 p-4 duration-200 sm:w-[calc(100%-2rem)] sm:p-6 starting:scale-95 starting:opacity-0",
+        "rounded-feature border-line-strong bg-cream shadow-sticker-plum-lg fixed top-1/2 left-1/2 z-50 grid max-h-[90dvh] w-[calc(100vw-1.5rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 overflow-y-auto border p-4 duration-200 sm:w-[calc(100%-2rem)] sm:p-6 starting:scale-95 starting:opacity-0",
         className,
       )}
       {...props}
@@ -49,7 +49,7 @@ export const DialogContent = React.forwardRef<
       {!hideCloseButton && (
         <DialogPrimitive.Close
           aria-label="Close dialog"
-          className="border-plum text-plum hover:bg-blush absolute top-3.5 right-3.5 inline-flex size-9 items-center justify-center rounded-full border-2 bg-white shadow-[0_2px_0_#4A3552] transition-colors sm:top-4 sm:right-4 sm:size-10"
+          className="border-line-strong text-plum hover:bg-blush shadow-sticker absolute top-3.5 right-3.5 inline-flex size-9 items-center justify-center rounded-full border bg-white transition-colors sm:top-4 sm:right-4 sm:size-10"
         >
           <X className="size-4" />
         </DialogPrimitive.Close>

@@ -5,7 +5,7 @@ export const siteConfig = {
   domain: "whimsy.ke",
   slogan: "Little things, big smiles.",
   description:
-    "Cute home & lifestyle goods in Kenya. Pastel tableware, cozy bags, stationery, and sweet gifts delivered across Nairobi & Kenya.",
+    "Thoughtful objects for home and daily rituals. Ceramics, bags, desk pieces, and curated gift sets crafted for modern living in Nairobi and across Kenya.",
   url: env.NEXT_PUBLIC_SITE_URL,
   isDemoMode: env.NEXT_PUBLIC_DEMO_MODE,
   showDesignSystem: process.env.NODE_ENV !== "production",
@@ -29,13 +29,13 @@ export const siteConfig = {
     instagramUrl: "https://instagram.com/whimsy.ke",
     tiktokHandle: "@whimsy.ke",
     mpesaTillNumber: "000 000 (Demo Till)",
-    pickupAddress: "Studio 4B, The Pastel Courtyard, Kilimani, Nairobi (Demo Address)",
+    pickupAddress: "Studio 4B, The Courtyard, Kilimani, Nairobi (Demo Address)",
     hours: "Mon – Sat: 9:00 AM – 6:00 PM EAT",
   },
   announcements: [
-    "✨ Free delivery across Kenya on orders over KES 3,000!",
-    "🎀 Free signature bow gift wrapping on all gift bundles!",
-    "💌 Free die-cut sticker sheet tucked inside every single order!",
+    "Complimentary delivery across Kenya on orders over KES 3,000",
+    "Signature gift wrap & personalized handwritten note cards available",
+    "Same-day courier dispatch across Nairobi for orders placed before 2:00 PM",
   ],
   demoNotice: "Demo store. No real orders are processed.",
 } as const;

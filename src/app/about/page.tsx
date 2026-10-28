@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Heart, MapPin, Sparkles } from "lucide-react";
 import { siteConfig } from "@/config/site";
-import { BowMascot } from "@/illustrations/bow-mascot";
+import { BrandGlyph } from "@/illustrations/brand-glyph";
 import { ScallopDivider } from "@/illustrations/scallop-divider";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -20,7 +20,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-(--spacing-container) px-4 sm:px-6">
           <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
             <div className="max-w-2xl">
-              <Badge variant="bestseller">Born in Nairobi 🇰🇪</Badge>
+              <Badge variant="bestseller">Born in Nairobi</Badge>
               <h1 className="font-display text-plum text-display mt-2 font-bold">
                 Little things, big smiles.
               </h1>
@@ -30,14 +30,14 @@ export default function AboutPage() {
                 bag—should make you grin every single time you reach for them.
               </p>
             </div>
-            <BowMascot mood="waving" size="xl" />
+            <BrandGlyph mood="waving" size="xl" />
           </div>
         </div>
       </section>
       <ScallopDivider fill="blush" flip />
 
       <div className="mx-auto mt-10 max-w-4xl space-y-10 px-4 sm:px-6">
-        <article className="rounded-feature border-plum shadow-sticker space-y-4 border-2 bg-white p-6 sm:p-8">
+        <article className="rounded-feature border-line-strong shadow-sticker space-y-4 border bg-white p-6 sm:p-8">
           <h2 className="font-display text-plum text-h2 font-bold">
             Why We Obsess Over the Little Details
           </h2>
@@ -54,7 +54,7 @@ export default function AboutPage() {
         </article>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          <div className="rounded-card border-plum bg-mint/55 border-2 p-5 shadow-[0_4px_0_#4A3552]">
+          <div className="rounded-card border-line-strong bg-mint/55 shadow-sticker border p-5">
             <Sparkles className="text-plum mb-2 size-6" />
             <h3 className="font-display text-plum text-h4 font-bold">Curated Quality</h3>
             <p className="text-plum/85 text-small mt-1">
@@ -63,7 +63,7 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="rounded-card border-plum bg-butter/60 border-2 p-5 shadow-[0_4px_0_#4A3552]">
+          <div className="rounded-card border-line-strong bg-butter/60 shadow-sticker border p-5">
             <Heart className="text-plum mb-2 size-6" />
             <h3 className="font-display text-plum text-h4 font-bold">Effortless Gifting</h3>
             <p className="text-plum/85 text-small mt-1">
@@ -72,7 +72,7 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="rounded-card border-plum bg-lavender/60 border-2 p-5 shadow-[0_4px_0_#4A3552]">
+          <div className="rounded-card border-line-strong bg-lavender/60 shadow-sticker border p-5">
             <MapPin className="text-plum mb-2 size-6" />
             <h3 className="font-display text-plum text-h4 font-bold">Proudly Kenyan</h3>
             <p className="text-plum/85 text-small mt-1">
@@ -84,7 +84,7 @@ export default function AboutPage() {
 
         <div className="text-center">
           <Button asChild variant="primary" size="lg">
-            <Link href="/shop">Explore Our Cute Collection →</Link>
+            <Link href="/shop">Explore the Collection →</Link>
           </Button>
         </div>
       </div>

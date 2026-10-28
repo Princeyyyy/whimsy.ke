@@ -12,9 +12,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         type={type}
         aria-invalid={hasError || undefined}
         className={cn(
-          "border-plum/40 text-plum placeholder:text-soft-plum/75 text-body focus-visible:border-plum flex min-h-12 w-full rounded-2xl border-2 bg-white px-4 py-2.5 font-medium shadow-[0_3px_0_#FFD9E8] transition-all duration-150 focus-visible:shadow-[0_4px_0_#4A3552] focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
-          hasError &&
-            "border-error bg-error-bg/35 focus-visible:border-error shadow-[0_3px_0_#B3264E]",
+          "border-plum/40 text-plum placeholder:text-soft-plum/75 text-body focus-visible:border-line-strong shadow-sticker focus-visible:shadow-sticker flex min-h-12 w-full rounded-2xl border bg-white px-4 py-2.5 font-medium transition-all duration-150 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
+          hasError && "border-error bg-error-bg/35 focus-visible:border-error shadow-sticker",
           className,
         )}
         ref={ref}
@@ -35,9 +34,8 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       <textarea
         aria-invalid={hasError || undefined}
         className={cn(
-          "border-plum/40 text-plum placeholder:text-soft-plum/75 text-body focus-visible:border-plum flex min-h-28 w-full rounded-2xl border-2 bg-white p-4 font-medium shadow-[0_3px_0_#FFD9E8] transition-all duration-150 focus-visible:shadow-[0_4px_0_#4A3552] focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
-          hasError &&
-            "border-error bg-error-bg/35 focus-visible:border-error shadow-[0_3px_0_#B3264E]",
+          "border-plum/40 text-plum placeholder:text-soft-plum/75 text-body focus-visible:border-line-strong shadow-sticker focus-visible:shadow-sticker flex min-h-28 w-full rounded-2xl border bg-white p-4 font-medium transition-all duration-150 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
+          hasError && "border-error bg-error-bg/35 focus-visible:border-error shadow-sticker",
           className,
         )}
         ref={ref}

@@ -5,7 +5,7 @@ export function Skeleton({ className, ...props }: React.HTMLAttributes<HTMLDivEl
   return (
     <div
       aria-hidden="true"
-      className={cn("border-blush bg-blush/45 animate-pulse rounded-2xl border-2", className)}
+      className={cn("border-blush bg-blush/45 animate-pulse rounded-2xl border", className)}
       {...props}
     />
   );

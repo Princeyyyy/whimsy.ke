@@ -14,7 +14,7 @@ import {
   useShopStore,
   type CartItem,
 } from "@/features/cart/store";
-import { BowMascot } from "@/illustrations/bow-mascot";
+import { BrandGlyph } from "@/illustrations/brand-glyph";
 import { ProductIllustration } from "@/illustrations/product-illustrations";
 import { ScallopDivider } from "@/illustrations/scallop-divider";
 import { Button } from "@/components/ui/button";
@@ -55,7 +55,7 @@ export function CartPageView() {
     <div className="pb-16">
       <section className="bg-blush/55 border-plum/15 border-b py-10">
         <div className="mx-auto max-w-(--spacing-container) px-4 sm:px-6">
-          <Badge variant="bestseller">Your Cute Haul 🎀</Badge>
+          <Badge variant="bestseller">Review Bag</Badge>
           <h1 className="font-display text-plum text-h1 mt-2 font-bold">{copy.cart.title}</h1>
         </div>
       </section>
@@ -63,8 +63,8 @@ export function CartPageView() {
 
       <div className="mx-auto mt-8 max-w-(--spacing-container) px-4 sm:px-6">
         {bagItems.length === 0 ? (
-          <div className="rounded-feature border-plum shadow-sticker flex flex-col items-center justify-center border-2 bg-white px-6 py-16 text-center">
-            <BowMascot mood="sleepy" size="xl" />
+          <div className="rounded-feature border-line-strong shadow-sticker flex flex-col items-center justify-center border bg-white px-6 py-16 text-center">
+            <BrandGlyph mood="sleepy" size="xl" />
             <h2 className="font-display text-plum text-h2 mt-4 font-bold">
               {copy.cart.emptyTitle}
             </h2>
@@ -74,7 +74,7 @@ export function CartPageView() {
                 <Link href="/shop">{copy.cart.emptyCta}</Link>
               </Button>
               <Button asChild variant="secondary" size="lg">
-                <Link href="/gift-builder">Build a Gift Box (-10%)</Link>
+                <Link href="/gift-builder">Build a Gift Set (-10%)</Link>
               </Button>
             </div>
           </div>
@@ -83,7 +83,7 @@ export function CartPageView() {
             {/* Left: Line Items + Add-ons */}
             <div className="space-y-6 lg:col-span-8">
               {/* Free Delivery Ribbon */}
-              <div className="rounded-card border-plum bg-mint/75 border-2 p-4 shadow-[0_4px_0_#4A3552]">
+              <div className="rounded-card border-line-strong bg-mint/75 shadow-sticker border p-4">
                 <div className="flex items-center justify-between gap-2 text-sm font-bold">
                   <span className="text-plum flex items-center gap-2">
                     <Sparkles className="size-4 shrink-0" aria-hidden="true" />
@@ -95,7 +95,7 @@ export function CartPageView() {
                     {totals.freeDeliveryProgressPercent}%
                   </span>
                 </div>
-                <div className="border-plum mt-2 h-3 w-full overflow-hidden rounded-full border-2 bg-white">
+                <div className="border-line-strong mt-2 h-3 w-full overflow-hidden rounded-full border bg-white">
                   <div
                     className="bg-bubblegum h-full transition-all duration-300"
                     style={{ width: `${totals.freeDeliveryProgressPercent}%` }}
@@ -107,7 +107,7 @@ export function CartPageView() {
                 {bagItems.map((item) => (
                   <li
                     key={item.key}
-                    className="rounded-card border-plum shadow-sticker flex flex-col gap-4 border-2 bg-white p-4 sm:flex-row sm:items-center"
+                    className="rounded-card border-line-strong shadow-sticker flex flex-col gap-4 border bg-white p-4 sm:flex-row sm:items-center"
                   >
                     <Link href={`/products/${item.slug}`} className="size-24 shrink-0">
                       <ProductIllustration
@@ -132,7 +132,7 @@ export function CartPageView() {
                       )}
                       {item.giftNote && (
                         <p className="text-plum bg-butter/40 inline-block rounded-xl px-2.5 py-1 text-xs font-semibold">
-                          💌 Gift Note: &ldquo;{item.giftNote}&rdquo;
+                          Gift Note: &ldquo;{item.giftNote}&rdquo;
                         </p>
                       )}
                       <p className="text-soft-plum text-xs font-semibold">
@@ -141,7 +141,7 @@ export function CartPageView() {
                     </div>
 
                     <div className="flex items-center justify-between gap-4 sm:justify-end">
-                      <div className="border-plum bg-cream inline-flex items-center rounded-full border-2">
+                      <div className="border-line-strong bg-cream inline-flex items-center rounded-full border">
                         <button
                           type="button"
                           aria-label={`Decrease quantity of ${item.name}`}
@@ -175,7 +175,7 @@ export function CartPageView() {
                         type="button"
                         onClick={() => handleRemoveWithUndo(item)}
                         aria-label={`Remove ${item.name}`}
-                        className="border-plum/30 text-soft-plum hover:text-error hover:border-error inline-flex size-10 items-center justify-center rounded-full border-2 transition-colors"
+                        className="border-plum/30 text-soft-plum hover:text-error hover:border-error inline-flex size-10 items-center justify-center rounded-full border transition-colors"
                       >
                         <Trash2 className="size-4" />
                       </button>
@@ -186,15 +186,15 @@ export function CartPageView() {
 
               {/* Add-on Suggestions */}
               {addonSuggestions.length > 0 && (
-                <div className="rounded-card border-plum/25 border-2 bg-white p-5">
+                <div className="rounded-card border-plum/25 border bg-white p-5">
                   <h2 className="font-display text-plum mb-3 text-base font-bold">
-                    Tuck In a Little Extra Under KES 650 ✨
+                    Tuck In a Little Extra Under KES 650{" "}
                   </h2>
                   <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                     {addonSuggestions.map((addon) => (
                       <div
                         key={addon.slug}
-                        className="border-plum/20 bg-cream/60 flex items-center justify-between gap-3 rounded-2xl border-2 p-3"
+                        className="border-plum/20 bg-cream/60 flex items-center justify-between gap-3 rounded-2xl border p-3"
                       >
                         <div className="flex items-center gap-3">
                           <div className="size-14 shrink-0">
@@ -239,11 +239,11 @@ export function CartPageView() {
 
             {/* Right: Gift Options & Summary */}
             <div className="lg:col-span-4">
-              <div className="rounded-feature border-plum shadow-sticker-plum sticky top-24 space-y-5 border-2 bg-white p-6">
+              <div className="rounded-feature border-line-strong shadow-sticker-plum sticky top-24 space-y-5 border bg-white p-6">
                 <h2 className="font-display text-plum text-h3 font-bold">Gift Bag Summary</h2>
 
                 {/* Gift Wrap Option */}
-                <div className="border-plum/25 bg-lavender/40 space-y-3 rounded-2xl border-2 p-4">
+                <div className="border-plum/25 bg-lavender/40 space-y-3 rounded-2xl border p-4">
                   <div className="flex items-start gap-3">
                     <Checkbox
                       id="cart-page-gift-wrap"
@@ -304,7 +304,7 @@ export function CartPageView() {
                   <div className="flex justify-between">
                     <span className="text-soft-plum font-semibold">Kenya Delivery</span>
                     <span className="font-display text-plum font-bold">
-                      {totals.qualifiesForFreeDelivery ? "FREE 🎉" : "Calculated next"}
+                      {totals.qualifiesForFreeDelivery ? "FREE" : "Calculated next"}
                     </span>
                   </div>
                   <div className="border-blush flex items-center justify-between border-t pt-3 text-lg">

@@ -21,7 +21,7 @@ export function AnnouncementBar() {
     <div
       role="region"
       aria-label="Store announcements"
-      className="border-plum bg-butter text-plum relative z-40 flex min-h-10 w-full items-center justify-center border-b-2 px-4 py-1.5 text-center"
+      className="border-line-strong bg-butter text-plum relative z-40 flex min-h-10 w-full items-center justify-center border-b px-4 py-1.5 text-center"
     >
       <div className="mx-auto flex max-w-6xl items-center justify-center gap-2">
         <Sparkles className="text-plum size-4 shrink-0" aria-hidden="true" />

@@ -4,7 +4,7 @@ import * as React from "react";
 import { toast } from "sonner";
 import { Heart, ShoppingBag, Sparkles } from "lucide-react";
 import { getProducts } from "@/lib/repositories";
-import { BowMascot, type MascotMood } from "@/illustrations/bow-mascot";
+import { BrandGlyph, type MascotMood } from "@/illustrations/brand-glyph";
 import {
   ProductIllustration,
   type IllustrationKind,
@@ -110,7 +110,7 @@ export function DesignSystemShowcase() {
                 interactive primitives.
               </p>
             </div>
-            <BowMascot mood="happy" size="xl" />
+            <BrandGlyph mood="happy" size="xl" />
           </div>
         </div>
       </section>
@@ -132,10 +132,10 @@ export function DesignSystemShowcase() {
             {COLOUR_SWATCHES.map((swatch) => (
               <div
                 key={swatch.token}
-                className="rounded-card border-plum overflow-hidden border-2 bg-white p-3 shadow-[0_4px_0_#FFD9E8]"
+                className="rounded-card border-line-strong shadow-sticker overflow-hidden border bg-white p-3"
               >
                 <div
-                  className={`border-plum/30 mb-3 flex h-20 items-end rounded-xl border-2 p-2.5 ${swatch.bg}`}
+                  className={`border-plum/30 mb-3 flex h-20 items-end rounded-xl border p-2.5 ${swatch.bg}`}
                 >
                   <span className="font-display text-xs font-bold">{swatch.hex}</span>
                 </div>
@@ -151,7 +151,7 @@ export function DesignSystemShowcase() {
           <h2 id="ds-typography" className="font-display text-plum text-h2 mb-6 font-bold">
             2. Fluid Typography Scale (Fredoka & Quicksand)
           </h2>
-          <div className="rounded-feature border-plum shadow-sticker space-y-5 border-2 bg-white p-6 md:p-8">
+          <div className="rounded-feature border-line-strong shadow-sticker space-y-5 border bg-white p-6 md:p-8">
             <div className="border-blush border-b pb-4">
               <span className="text-soft-plum text-xs font-bold uppercase">
                 Display · Fredoka Bold · clamp(2.25rem, 4vw + 1rem, 3.75rem)
@@ -209,7 +209,7 @@ export function DesignSystemShowcase() {
           <h2 id="ds-primitives" className="font-display text-plum text-h2 mb-6 font-bold">
             3. Interactive Primitives (Buttons, Hang-Tags, Chips, Badges & Toasts)
           </h2>
-          <div className="rounded-feature border-plum shadow-sticker space-y-8 border-2 bg-white p-6 md:p-8">
+          <div className="rounded-feature border-line-strong shadow-sticker space-y-8 border bg-white p-6 md:p-8">
             {/* Button Variants */}
             <div>
               <h3 className="font-display text-plum text-h4 mb-3 font-bold">
@@ -285,7 +285,7 @@ export function DesignSystemShowcase() {
                   <Button
                     variant="lavender"
                     size="sm"
-                    onClick={() => toast.success("Karibu! Here is a styled Sticker Sheet toast ✨")}
+                    onClick={() => toast.success("Karibu! Here is a styled Sticker Sheet toast")}
                   >
                     <Sparkles className="size-4" />
                     Trigger Demo Toast
@@ -363,9 +363,9 @@ export function DesignSystemShowcase() {
             {MASCOT_MOODS.map((item) => (
               <div
                 key={item.mood}
-                className="washi-tape rounded-card border-plum shadow-sticker flex flex-col items-center border-2 bg-white p-6 text-center"
+                className="rounded-card border-line-strong shadow-sticker flex flex-col items-center border bg-white p-6 text-center"
               >
-                <BowMascot mood={item.mood} size="lg" />
+                <BrandGlyph mood={item.mood} size="lg" />
                 <h3 className="font-display text-plum text-h4 mt-4 font-bold">{item.title}</h3>
                 <Badge variant="lavender" className="mt-1">
                   mood=&ldquo;{item.mood}&rdquo;
@@ -402,7 +402,7 @@ export function DesignSystemShowcase() {
             {ILLUSTRATION_GALLERY.map((item) => (
               <div
                 key={item.kind}
-                className="border-plum/25 rounded-2xl border-2 bg-white p-2 text-center shadow-[0_3px_0_#FFD9E8]"
+                className="border-plum/25 shadow-sticker rounded-2xl border bg-white p-2 text-center"
               >
                 <ProductIllustration kind={item.kind} backdrop={item.backdrop} alt={item.label} />
                 <p className="font-display text-plum mt-2 truncate text-xs font-bold">

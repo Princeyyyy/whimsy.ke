@@ -23,6 +23,7 @@ import { copy } from "@/config/i18n";
 import { siteConfig } from "@/config/site";
 import { formatKES } from "@/lib/formatters";
 import { getProductsBySlugs } from "@/lib/repositories";
+import { fireMiniConfetti } from "@/lib/confetti";
 import { useHydrated, useShopStore } from "@/features/cart/store";
 import { trackEvent } from "@/lib/analytics";
 import { ProductIllustration, type IllustrationView } from "@/illustrations/product-illustrations";
@@ -114,8 +115,16 @@ export function ProductDetailView({ product, reviews, pairsWellWith }: ProductDe
     return getProductsBySlugs(recentlyViewedSlugs.filter((s) => s !== product.slug)).slice(0, 4);
   }, [hydrated, recentlyViewedSlugs, product.slug]);
 
-  function handleAddToBag() {
+  function handleAddToBag(e?: React.MouseEvent<HTMLButtonElement>) {
     if (isSoldOut) return;
+    if (e) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = (rect.left + rect.width / 2) / window.innerWidth;
+      const y = (rect.top + rect.height / 2) / window.innerHeight;
+      fireMiniConfetti({ x, y });
+    } else {
+      fireMiniConfetti();
+    }
     addItem({
       slug: product.slug,
       name: product.name,
@@ -139,7 +148,7 @@ export function ProductDetailView({ product, reviews, pairsWellWith }: ProductDe
     toast.success(copy.cart.addedToast(`${quantity}× ${product.name}`));
   }
 
-  const whatsappOrderText = `Hujambo Whimsy.KE! 🎀 I'd love to order:\n• ${quantity}× ${product.name}${
+  const whatsappOrderText = `Hujambo Whimsy.KE! I'd love to order:\n• ${quantity}× ${product.name}${
     variantSummary ? ` (${variantSummary})` : ""
   } — ${formatKES(product.price * quantity)}\n${
     isGift && giftNote ? `• Gift Note: "${giftNote}"\n` : ""
@@ -178,7 +187,7 @@ export function ProductDetailView({ product, reviews, pairsWellWith }: ProductDe
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
           {/* Left: Swipeable Gallery + Thumbnails */}
           <div className="lg:col-span-6">
-            <div className="rounded-feature border-plum shadow-sticker-card overflow-hidden border-2 bg-white p-4 ring-4 ring-white">
+            <div className="rounded-feature border-line-strong shadow-sticker-card overflow-hidden border bg-white p-4">
               <div className="overflow-hidden rounded-2xl" ref={emblaRef}>
                 <div className="flex">
                   {GALLERY_VIEWS.map((g) => (
@@ -203,9 +212,9 @@ export function ProductDetailView({ product, reviews, pairsWellWith }: ProductDe
                     onClick={() => emblaApi?.scrollTo(idx)}
                     aria-label={`View ${g.label}`}
                     className={cn(
-                      "overflow-hidden rounded-2xl border-2 p-1 transition-all",
+                      "overflow-hidden rounded-2xl border p-1 transition-all",
                       activeSlide === idx
-                        ? "border-plum bg-blush/50 shadow-[0_3px_0_#4A3552]"
+                        ? "border-line-strong bg-blush/50 shadow-sticker"
                         : "border-plum/20 bg-white opacity-75 hover:opacity-100",
                     )}
                   >
@@ -250,7 +259,10 @@ export function ProductDetailView({ product, reviews, pairsWellWith }: ProductDe
                 <span className="text-plum ml-auto inline-flex items-center gap-1 text-xs font-bold">
                   <Star className="fill-butter text-plum size-4" aria-hidden="true" />
                   <span>{product.rating.toFixed(1)}</span>
-                  <a href="#product-reviews" className="text-soft-plum underline">
+                  <a
+                    href="#product-reviews"
+                    className="text-soft-plum hover:text-plum transition-colors"
+                  >
                     ({product.reviewCount} reviews)
                   </a>
                 </span>
@@ -272,7 +284,7 @@ export function ProductDetailView({ product, reviews, pairsWellWith }: ProductDe
                   </span>
                 ) : isLowStock ? (
                   <span className="font-display text-error bg-error-bg rounded-full px-3 py-1 text-xs font-bold">
-                    🔥 Hurry! Only {product.stock} left in Nairobi studio
+                    Hurry! Only {product.stock} left in Nairobi studio
                   </span>
                 ) : (
                   <span className="font-display bg-mint text-plum rounded-full px-3 py-1 text-xs font-bold">
@@ -319,7 +331,7 @@ export function ProductDetailView({ product, reviews, pairsWellWith }: ProductDe
             )}
 
             {/* "This is a gift" Checkbox & Note */}
-            <div className="rounded-card border-plum/25 bg-butter/35 space-y-3 border-2 p-4">
+            <div className="rounded-card border-plum/25 bg-butter/35 space-y-3 border p-4">
               <div className="flex items-center gap-3">
                 <Checkbox
                   id="product-is-gift"
@@ -331,7 +343,7 @@ export function ProductDetailView({ product, reviews, pairsWellWith }: ProductDe
                   className="font-display text-plum flex cursor-pointer items-center gap-1.5 text-sm font-bold"
                 >
                   <Gift className="size-4" aria-hidden="true" />
-                  <span>This is a gift (Add a free bow note card!)</span>
+                  <span>This is a gift (Complimentary note card & packaging)</span>
                 </label>
               </div>
 
@@ -348,7 +360,7 @@ export function ProductDetailView({ product, reviews, pairsWellWith }: ProductDe
                     rows={2}
                     value={giftNote}
                     onChange={(e) => setGiftNote(e.target.value)}
-                    placeholder="e.g., Happy Birthday Bestie! Sending big smiles 💕"
+                    placeholder="e.g., Happy Birthday! Wishing you a wonderful year ahead."
                     className="min-h-20 bg-white text-sm"
                   />
                 </div>
@@ -358,7 +370,7 @@ export function ProductDetailView({ product, reviews, pairsWellWith }: ProductDe
             {/* Quantity Stepper + Add to Bag + Wishlist */}
             <div className="flex flex-wrap items-center gap-3">
               {!isSoldOut && (
-                <div className="border-plum inline-flex min-h-12 items-center rounded-full border-2 bg-white px-1 shadow-[0_3px_0_#4A3552] sm:min-h-13">
+                <div className="border-line-strong shadow-sticker inline-flex min-h-12 items-center rounded-full border bg-white px-1 sm:min-h-13">
                   <button
                     type="button"
                     aria-label="Decrease quantity"
@@ -389,7 +401,7 @@ export function ProductDetailView({ product, reviews, pairsWellWith }: ProductDe
                   const added = toggleWishlist(product.slug);
                   toast(
                     added
-                      ? `Saved ${product.name} to your wishes 💖`
+                      ? `Saved ${product.name} to your wishes`
                       : `Removed ${product.name} from wishes`,
                   );
                 }}
@@ -432,7 +444,7 @@ export function ProductDetailView({ product, reviews, pairsWellWith }: ProductDe
                   className="w-full sm:order-2 sm:w-auto sm:flex-1"
                 >
                   <ShoppingBag className="size-5 shrink-0" aria-hidden="true" />
-                  <span>Add to Gift Bag · {formatKES(product.price * quantity)}</span>
+                  <span>Add to Bag · {formatKES(product.price * quantity)}</span>
                 </Button>
               )}
             </div>
@@ -446,7 +458,7 @@ export function ProductDetailView({ product, reviews, pairsWellWith }: ProductDe
             </Button>
 
             {/* Quick Delivery & M-Pesa Reassurance */}
-            <div className="border-plum/20 grid grid-cols-1 gap-3 rounded-2xl border-2 bg-white p-3.5 text-xs sm:grid-cols-2">
+            <div className="border-plum/20 grid grid-cols-1 gap-3 rounded-2xl border bg-white p-3.5 text-xs sm:grid-cols-2">
               <div className="flex items-center gap-2.5">
                 <Truck className="text-plum size-5 shrink-0" aria-hidden="true" />
                 <span>
@@ -476,15 +488,15 @@ export function ProductDetailView({ product, reviews, pairsWellWith }: ProductDe
                       <strong className="text-plum">Material:</strong> {product.details.material}
                     </li>
                     <li>
-                      <strong className="text-plum">Freebie:</strong> Comes with a complimentary
-                      Whimsy vinyl sticker!
+                      <strong className="text-plum">Packaging:</strong> Wrapped in archival tissue
+                      with a bespoke gift card.
                     </li>
                   </ul>
                 </AccordionContent>
               </AccordionItem>
 
               <AccordionItem value="care">
-                <AccordionTrigger>Care & Keeping Cute</AccordionTrigger>
+                <AccordionTrigger>Care & Maintenance</AccordionTrigger>
                 <AccordionContent>
                   <p className="text-sm">{product.details.care}</p>
                 </AccordionContent>
@@ -518,7 +530,7 @@ export function ProductDetailView({ product, reviews, pairsWellWith }: ProductDe
 
         {/* REVIEWS WITH RATING SUMMARY BARS */}
         <section id="product-reviews" aria-labelledby="reviews-heading" className="mt-16 pt-8">
-          <div className="rounded-feature border-plum shadow-sticker border-2 bg-white p-6 md:p-8">
+          <div className="rounded-feature border-line-strong shadow-sticker border bg-white p-6 md:p-8">
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
               {/* Rating Summary Bars */}
               <div className="space-y-4 lg:col-span-4">
@@ -570,7 +582,7 @@ export function ProductDetailView({ product, reviews, pairsWellWith }: ProductDe
                 {reviews.map((rev) => (
                   <article
                     key={rev.id}
-                    className="border-plum/20 bg-cream/60 rounded-2xl border-2 p-4"
+                    className="border-plum/20 bg-cream/60 rounded-2xl border p-4"
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-0.5">
@@ -602,7 +614,7 @@ export function ProductDetailView({ product, reviews, pairsWellWith }: ProductDe
         {/* PAIRS WELL WITH RAIL */}
         <section aria-labelledby="pairs-well-heading" className="mt-14">
           <div className="mb-6">
-            <Badge variant="lavender">Complete the Vibe ✨</Badge>
+            <Badge variant="lavender">Complete the Vibe</Badge>
             <h2 id="pairs-well-heading" className="font-display text-plum text-h2 mt-1.5 font-bold">
               Pairs So Well With
             </h2>
@@ -623,7 +635,7 @@ export function ProductDetailView({ product, reviews, pairsWellWith }: ProductDe
                 id="recently-viewed-heading"
                 className="font-display text-plum text-h2 mt-1.5 font-bold"
               >
-                Recently Viewed Cute Finds
+                Recently Viewed
               </h2>
             </div>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
@@ -637,7 +649,7 @@ export function ProductDetailView({ product, reviews, pairsWellWith }: ProductDe
 
       {/* STICKY MOBILE ADD-TO-BAG BAR (Positioned above the 64px mobile tab bar) */}
       {!isSoldOut && (
-        <div className="border-plum fixed right-0 bottom-16 left-0 z-20 flex items-center justify-between gap-3 border-t-2 bg-white/95 px-4 py-2.5 backdrop-blur-md lg:hidden">
+        <div className="border-line-strong fixed right-0 bottom-16 left-0 z-20 flex items-center justify-between gap-3 border-t bg-white/95 px-4 py-2.5 backdrop-blur-md lg:hidden">
           <div className="min-w-0">
             <p className="font-display text-plum truncate text-xs font-bold">{product.name}</p>
             <p className="font-display text-bubblegum-deep text-sm font-bold">

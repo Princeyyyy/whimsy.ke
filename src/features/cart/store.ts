@@ -79,7 +79,7 @@ const DEMO_SEED_ORDER: StoredOrder = {
     },
   ],
   giftWrap: true,
-  orderNote: "Happy Birthday Wanjiru! Enjoy your cute goodies 🎀",
+  orderNote: "Happy Birthday Wanjiru! Wishing you a wonderful year ahead.",
   discountAmount: 0,
   deliveryFee: 0,
   subtotal: 3100,

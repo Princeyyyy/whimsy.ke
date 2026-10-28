@@ -13,6 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import { HangTagPrice } from "@/components/ui/hang-tag-price";
 import { Button } from "@/components/ui/button";
 import { cn, getStickerTiltClass } from "@/lib/utils";
+import { fireMiniConfetti } from "@/lib/confetti";
 
 export interface ProductCardProps {
   product: Product;
@@ -66,6 +67,11 @@ export function ProductCard({ product, className }: ProductCardProps) {
       },
     });
 
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (rect.left + rect.width / 2) / window.innerWidth;
+    const y = (rect.top + rect.height / 2) / window.innerHeight;
+    fireMiniConfetti({ x, y });
+
     setJustAdded(true);
     window.setTimeout(() => setJustAdded(false), 1100);
 
@@ -75,9 +81,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
   function handleToggleWishlist(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     const added = toggleWishlist(product.slug);
-    toast(
-      added ? `Saved ${product.name} to your wishes 💖` : `Removed ${product.name} from wishes`,
-    );
+    toast(added ? `Saved ${product.name} to your wishes` : `Removed ${product.name} from wishes`);
   }
 
   function handleNotifyMe(e: React.MouseEvent<HTMLButtonElement>) {
@@ -89,9 +93,9 @@ export function ProductCard({ product, className }: ProductCardProps) {
   return (
     <article
       className={cn(
-        "group rounded-card border-plum shadow-sticker-card hover:shadow-sticker-card-hover focus-within:shadow-sticker-card-hover @container relative flex h-full flex-col justify-between border-2 bg-white p-3.5 ring-4 ring-white transition-all duration-200 focus-within:-translate-y-1 hover:-translate-y-1",
+        "group rounded-card border-line-strong shadow-sticker-card hover:shadow-sticker-card-hover focus-within:shadow-sticker-card-hover @container relative flex h-full flex-col justify-between border bg-white p-3.5 transition-all duration-200 focus-within:-translate-y-1 hover:-translate-y-1",
         tiltClass,
-        "focus-within:motion-safe:rotate-0 hover:motion-safe:rotate-0",
+        "",
         isSoldOut && "opacity-90",
         className,
       )}
@@ -145,7 +149,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
                 : `Save ${product.name} to wishlist`
             }
             aria-pressed={isWishlisted}
-            className="border-plum text-plum hover:bg-blush absolute top-2.5 right-2.5 z-20 inline-flex size-11 items-center justify-center rounded-full border-2 bg-white/95 shadow-[0_2px_0_#4A3552] transition-transform active:scale-95"
+            className="border-line-strong text-plum hover:bg-blush shadow-sticker absolute top-2.5 right-2.5 z-20 inline-flex size-11 items-center justify-center rounded-full border bg-white/95 transition-transform active:scale-95"
           >
             <Heart
               className={cn(
@@ -162,9 +166,9 @@ export function ProductCard({ product, className }: ProductCardProps) {
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 z-30 flex items-center justify-center"
             >
-              <span className="border-plum bg-butter text-plum font-display inline-flex items-center gap-1.5 rounded-full border-2 px-4 py-2 text-sm font-bold shadow-[0_4px_0_#4A3552] motion-safe:animate-bounce">
+              <span className="border-line-strong bg-butter text-plum font-display shadow-sticker inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-sm font-bold motion-safe:animate-bounce">
                 <span>In your bag!</span>
-                <span>💖</span>
+                <span></span>
               </span>
             </div>
           )}

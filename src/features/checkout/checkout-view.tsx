@@ -37,7 +37,8 @@ import {
   simulatedPaymentProvider,
 } from "@/features/checkout/payment-provider";
 import { trackEvent } from "@/lib/analytics";
-import { BowMascot } from "@/illustrations/bow-mascot";
+import { fireCelebrationConfetti } from "@/lib/confetti";
+import { BrandGlyph } from "@/illustrations/brand-glyph";
 import { ProductIllustration } from "@/illustrations/product-illustrations";
 import { ScallopDivider } from "@/illustrations/scallop-divider";
 import { Button } from "@/components/ui/button";
@@ -169,30 +170,9 @@ export function CheckoutView() {
     const clean = promoInput.trim().toUpperCase();
     if (clean === siteConfig.promoCodes.WHIMSY10.code) {
       setAppliedPromo(clean);
-      toast.success("Hooray! Code WHIMSY10 applied for 10% off 🎉");
+      toast.success("Hooray! Code WHIMSY10 applied for 10% off");
     } else {
       toast.error("Pole! Try code WHIMSY10 for our 10% welcome discount.");
-    }
-  }
-
-  async function triggerConfetti() {
-    if (
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
-      return;
-    }
-    try {
-      const confettiModule = await import("canvas-confetti");
-      const confetti = confettiModule.default;
-      void confetti({
-        particleCount: 75,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ["#FF8FB4", "#FFD9E8", "#E7D9FB", "#D7F5E4", "#F5E1A4"],
-      });
-    } catch {
-      // Ignore confetti load failure safely
     }
   }
 
@@ -261,33 +241,33 @@ export function CheckoutView() {
       },
     });
 
-    void triggerConfetti();
+    fireCelebrationConfetti();
   }
 
   // 1. M-PESA WAITING SCREEN (Animated Mascot + 4s STK push countdown)
   if (paymentStage === "waiting-mpesa") {
     return (
       <div className="mx-auto max-w-xl px-4 py-16 text-center sm:px-6">
-        <div className="washi-tape rounded-feature border-plum shadow-sticker-plum-lg space-y-5 border-2 bg-white p-8">
+        <div className="rounded-feature border-line-strong shadow-sticker-plum-lg space-y-5 border bg-white p-8">
           <div className="mx-auto flex justify-center">
-            <BowMascot mood="waving" size="xl" />
+            <BrandGlyph mood="waving" size="xl" />
           </div>
           <Badge variant="new" className="mx-auto">
-            Safaricom M-Pesa STK Push Sent 📲
+            Safaricom M-Pesa STK Push Sent{" "}
           </Badge>
           <h1 className="font-display text-plum text-h2 font-bold">
             {copy.checkout.mpesaWaitingTitle}
           </h1>
           <p className="text-soft-plum text-body">{copy.checkout.mpesaWaitingSubtitle}</p>
 
-          <div className="border-plum bg-mint/60 mx-auto max-w-xs space-y-1 rounded-2xl border-2 p-4 text-sm font-semibold">
+          <div className="border-line-strong bg-mint/60 mx-auto max-w-xs space-y-1 rounded-2xl border p-4 text-sm font-semibold">
             <p className="text-plum font-display font-bold">Amount: {formatKES(totals.total)}</p>
             <p className="text-soft-plum text-xs">
               Payable to: Whimsy.KE ({siteConfig.contact.mpesaTillNumber})
             </p>
           </div>
 
-          <div className="border-plum bg-cream mx-auto h-3 w-56 overflow-hidden rounded-full border-2">
+          <div className="border-line-strong bg-cream mx-auto h-3 w-56 overflow-hidden rounded-full border">
             <div className="bg-bubblegum h-full w-full animate-pulse" />
           </div>
           <p className="text-soft-plum text-xs font-semibold">
@@ -302,13 +282,13 @@ export function CheckoutView() {
   if (paymentStage === "confirmed" && confirmedOrder) {
     return (
       <div className="mx-auto max-w-2xl px-4 py-12 sm:px-6">
-        <div className="washi-tape rounded-feature border-plum shadow-sticker-plum-lg space-y-6 border-2 bg-white p-6 text-center sm:p-10">
+        <div className="rounded-feature border-line-strong shadow-sticker-plum-lg space-y-6 border bg-white p-6 text-center sm:p-10">
           <div className="mx-auto flex justify-center">
-            <BowMascot mood="happy" size="xl" />
+            <BrandGlyph mood="happy" size="xl" />
           </div>
 
           <div className="space-y-2">
-            <Badge variant="new">Order Confirmed 🎉</Badge>
+            <Badge variant="new">Order Confirmed</Badge>
             <h1 className="font-display text-plum text-h1 font-bold">
               {copy.checkout.orderSuccessTitle}
             </h1>
@@ -319,7 +299,7 @@ export function CheckoutView() {
           </div>
 
           {/* Order Meta Card */}
-          <div className="border-plum bg-cream grid grid-cols-2 gap-4 rounded-2xl border-2 p-4 text-left text-xs sm:grid-cols-4 sm:text-sm">
+          <div className="border-line-strong bg-cream grid grid-cols-2 gap-4 rounded-2xl border p-4 text-left text-xs sm:grid-cols-4 sm:text-sm">
             <div>
               <span className="text-soft-plum block text-xs font-bold uppercase">Order Number</span>
               <span className="font-display text-plum font-bold">{confirmedOrder.orderNumber}</span>
@@ -347,7 +327,7 @@ export function CheckoutView() {
           </div>
 
           {/* Ordered Items List */}
-          <div className="border-plum/25 rounded-2xl border-2 bg-white p-4 text-left">
+          <div className="border-plum/25 rounded-2xl border bg-white p-4 text-left">
             <h2 className="font-display text-plum mb-3 text-sm font-bold">
               Items in Your Parcel ({confirmedOrder.zoneName})
             </h2>
@@ -389,11 +369,11 @@ export function CheckoutView() {
   if (hydrated && bagItems.length === 0) {
     return (
       <div className="mx-auto max-w-xl px-4 py-16 text-center sm:px-6">
-        <div className="rounded-feature border-plum shadow-sticker space-y-4 border-2 bg-white p-8">
-          <BowMascot mood="sleepy" size="lg" className="mx-auto" />
+        <div className="rounded-feature border-line-strong shadow-sticker space-y-4 border bg-white p-8">
+          <BrandGlyph mood="sleepy" size="lg" className="mx-auto" />
           <h1 className="font-display text-plum text-h2 font-bold">{copy.cart.emptyTitle}</h1>
           <p className="text-soft-plum text-small">
-            Add something cute to your bag before heading to checkout!
+            Select items from our collection before proceeding to checkout.
           </p>
           <Button asChild variant="primary" size="md">
             <Link href="/shop">{copy.cart.emptyCta}</Link>
@@ -409,7 +389,7 @@ export function CheckoutView() {
         <div className="mx-auto max-w-(--spacing-container) px-4 sm:px-6">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
-              <Badge variant="bestseller">Safe & Speedy Kenya Checkout</Badge>
+              <Badge variant="bestseller">Secure Kenya Checkout</Badge>
               <h1 className="font-display text-plum text-h1 mt-1 font-bold">
                 {copy.checkout.title}
               </h1>
@@ -420,22 +400,22 @@ export function CheckoutView() {
               aria-label="Checkout steps"
               className="font-display flex flex-wrap items-center gap-1.5 text-xs font-bold sm:gap-2 sm:text-sm"
             >
-              <li className="border-plum text-plum flex items-center gap-1.5 rounded-full border-2 bg-white px-3 py-1.5 shadow-[0_2px_0_#4A3552]">
-                <span className="bg-bubblegum border-plum flex size-5 items-center justify-center rounded-full border text-xs">
+              <li className="border-line-strong text-plum shadow-sticker flex items-center gap-1.5 rounded-full border bg-white px-3 py-1.5">
+                <span className="bg-bubblegum border-line-strong flex size-5 items-center justify-center rounded-full border text-xs">
                   1
                 </span>
                 <span>Contact</span>
               </li>
               <span aria-hidden="true">→</span>
-              <li className="border-plum text-plum flex items-center gap-1.5 rounded-full border-2 bg-white px-3 py-1.5 shadow-[0_2px_0_#4A3552]">
-                <span className="bg-butter border-plum flex size-5 items-center justify-center rounded-full border text-xs">
+              <li className="border-line-strong text-plum shadow-sticker flex items-center gap-1.5 rounded-full border bg-white px-3 py-1.5">
+                <span className="bg-butter border-line-strong flex size-5 items-center justify-center rounded-full border text-xs">
                   2
                 </span>
                 <span>Delivery</span>
               </li>
               <span aria-hidden="true">→</span>
-              <li className="border-plum text-plum flex items-center gap-1.5 rounded-full border-2 bg-white px-3 py-1.5 shadow-[0_2px_0_#4A3552]">
-                <span className="bg-mint border-plum flex size-5 items-center justify-center rounded-full border text-xs">
+              <li className="border-line-strong text-plum shadow-sticker flex items-center gap-1.5 rounded-full border bg-white px-3 py-1.5">
+                <span className="bg-mint border-line-strong flex size-5 items-center justify-center rounded-full border text-xs">
                   3
                 </span>
                 <span>M-Pesa / COD</span>
@@ -451,10 +431,10 @@ export function CheckoutView() {
         {paymentStage === "failed" && paymentError && (
           <div
             role="alert"
-            className="rounded-card border-error bg-error-bg text-plum mb-6 flex flex-col items-start justify-between gap-4 border-2 p-5 shadow-[0_4px_0_#B3264E] sm:flex-row sm:items-center"
+            className="rounded-card border-error bg-error-bg text-plum shadow-sticker mb-6 flex flex-col items-start justify-between gap-4 border p-5 sm:flex-row sm:items-center"
           >
             <div className="flex items-start gap-3">
-              <BowMascot mood="confused" size="sm" animated={false} />
+              <BrandGlyph mood="confused" size="sm" animated={false} />
               <div>
                 <h2 className="font-display text-error text-base font-bold">
                   {copy.checkout.paymentFailedTitle}
@@ -485,7 +465,7 @@ export function CheckoutView() {
             type="button"
             aria-expanded={mobileSummaryOpen}
             onClick={() => setMobileSummaryOpen((o) => !o)}
-            className="rounded-card border-plum text-plum flex w-full items-center justify-between border-2 bg-white p-4 shadow-[0_3px_0_#FFD9E8]"
+            className="rounded-card border-line-strong text-plum shadow-sticker flex w-full items-center justify-between border bg-white p-4"
           >
             <span className="font-display flex items-center gap-2 text-sm font-bold">
               <span>
@@ -502,7 +482,7 @@ export function CheckoutView() {
           </button>
 
           {mobileSummaryOpen && (
-            <div className="border-plum mt-2 rounded-2xl border-2 bg-white p-4">
+            <div className="border-line-strong mt-2 rounded-2xl border bg-white p-4">
               <ul className="divide-blush divide-y text-xs">
                 {bagItems.map((item) => (
                   <li key={item.key} className="flex items-center justify-between py-2">
@@ -529,10 +509,10 @@ export function CheckoutView() {
             {/* STEP 1: CONTACT DETAILS */}
             <section
               aria-labelledby="step-contact"
-              className="rounded-feature border-plum shadow-sticker space-y-4 border-2 bg-white p-6"
+              className="rounded-feature border-line-strong shadow-sticker space-y-4 border bg-white p-6"
             >
               <div className="flex items-center gap-2.5">
-                <span className="font-display border-plum bg-bubblegum text-plum flex size-7 items-center justify-center rounded-full border-2 text-sm font-bold">
+                <span className="font-display border-line-strong bg-bubblegum text-plum flex size-7 items-center justify-center rounded-full border text-sm font-bold">
                   1
                 </span>
                 <h2 id="step-contact" className="font-display text-plum text-h3 font-bold">
@@ -592,10 +572,10 @@ export function CheckoutView() {
             {/* STEP 2: DELIVERY OR STUDIO PICKUP */}
             <section
               aria-labelledby="step-delivery"
-              className="rounded-feature border-plum shadow-sticker space-y-5 border-2 bg-white p-6"
+              className="rounded-feature border-line-strong shadow-sticker space-y-5 border bg-white p-6"
             >
               <div className="flex items-center gap-2.5">
-                <span className="font-display border-plum bg-butter text-plum flex size-7 items-center justify-center rounded-full border-2 text-sm font-bold">
+                <span className="font-display border-line-strong bg-butter text-plum flex size-7 items-center justify-center rounded-full border text-sm font-bold">
                   2
                 </span>
                 <h2 id="step-delivery" className="font-display text-plum text-h3 font-bold">
@@ -607,9 +587,9 @@ export function CheckoutView() {
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <label
                   className={cn(
-                    "cursor-pointer rounded-2xl border-2 p-4 transition-all",
+                    "cursor-pointer rounded-2xl border p-4 transition-all",
                     watchedDeliveryMethod === "delivery"
-                      ? "border-plum bg-blush/45 shadow-[0_3px_0_#4A3552]"
+                      ? "border-line-strong bg-blush/45 shadow-sticker"
                       : "border-plum/25 bg-cream/50 hover:bg-white",
                   )}
                 >
@@ -635,9 +615,9 @@ export function CheckoutView() {
 
                 <label
                   className={cn(
-                    "cursor-pointer rounded-2xl border-2 p-4 transition-all",
+                    "cursor-pointer rounded-2xl border p-4 transition-all",
                     watchedDeliveryMethod === "pickup"
-                      ? "border-plum bg-mint/65 shadow-[0_3px_0_#4A3552]"
+                      ? "border-line-strong bg-mint/65 shadow-sticker"
                       : "border-plum/25 bg-cream/50 hover:bg-white",
                   )}
                 >
@@ -666,7 +646,7 @@ export function CheckoutView() {
                   <Label htmlFor="checkout-zone">Select Your Delivery Zone</Label>
                   <select
                     id="checkout-zone"
-                    className="border-plum text-plum font-display focus-visible:outline-plum flex min-h-12 w-full rounded-2xl border-2 bg-white px-4 py-2.5 text-sm font-semibold shadow-[0_3px_0_#FFD9E8]"
+                    className="border-line-strong text-plum font-display focus-visible:outline-plum shadow-sticker flex min-h-12 w-full rounded-2xl border bg-white px-4 py-2.5 text-sm font-semibold"
                     {...register("zoneId")}
                   >
                     {zones.map((z) => (
@@ -680,7 +660,7 @@ export function CheckoutView() {
 
                   <div className="border-plum/25 bg-mint/45 mt-2.5 flex flex-wrap items-center justify-between gap-2 rounded-xl border px-3.5 py-2 text-xs font-semibold">
                     <span className="text-plum">
-                      ⏱️ Estimated Arrival: <strong>{selectedZone.eta}</strong>
+                      Estimated Arrival: <strong>{selectedZone.eta}</strong>
                     </span>
                     <span className="text-plum">
                       Fee:{" "}
@@ -735,10 +715,10 @@ export function CheckoutView() {
             {/* STEP 3: PAYMENT METHOD CARDS */}
             <section
               aria-labelledby="step-payment"
-              className="rounded-feature border-plum shadow-sticker space-y-5 border-2 bg-white p-6"
+              className="rounded-feature border-line-strong shadow-sticker space-y-5 border bg-white p-6"
             >
               <div className="flex items-center gap-2.5">
-                <span className="font-display border-plum bg-mint text-plum flex size-7 items-center justify-center rounded-full border-2 text-sm font-bold">
+                <span className="font-display border-line-strong bg-mint text-plum flex size-7 items-center justify-center rounded-full border text-sm font-bold">
                   3
                 </span>
                 <h2 id="step-payment" className="font-display text-plum text-h3 font-bold">
@@ -750,9 +730,9 @@ export function CheckoutView() {
                 {/* Option A: M-Pesa Simulated */}
                 <label
                   className={cn(
-                    "cursor-pointer rounded-2xl border-2 p-4 transition-all",
+                    "cursor-pointer rounded-2xl border p-4 transition-all",
                     watchedPaymentMethod === "mpesa"
-                      ? "border-plum bg-mint/55 shadow-[0_4px_0_#4A3552]"
+                      ? "border-line-strong bg-mint/55 shadow-sticker"
                       : "border-plum/25 hover:bg-cream/60 bg-white",
                   )}
                 >
@@ -799,11 +779,11 @@ export function CheckoutView() {
                 {/* Option B: Cash on Delivery (Nairobi zones) */}
                 <label
                   className={cn(
-                    "rounded-2xl border-2 p-4 transition-all",
+                    "rounded-2xl border p-4 transition-all",
                     !selectedZone.codAvailable && watchedDeliveryMethod === "delivery"
                       ? "border-plum/15 bg-cream-subtle cursor-not-allowed opacity-60"
                       : watchedPaymentMethod === "cod"
-                        ? "border-plum bg-butter/60 cursor-pointer shadow-[0_4px_0_#4A3552]"
+                        ? "border-line-strong bg-butter/60 shadow-sticker cursor-pointer"
                         : "border-plum/25 hover:bg-cream/60 cursor-pointer bg-white",
                   )}
                 >
@@ -833,7 +813,7 @@ export function CheckoutView() {
                 {/* Option C: Card (Disabled "Coming soon") */}
                 <div
                   aria-disabled="true"
-                  className="border-plum/15 bg-cream-subtle flex flex-wrap items-center justify-between gap-2 rounded-2xl border-2 p-4 opacity-65 select-none"
+                  className="border-plum/15 bg-cream-subtle flex flex-wrap items-center justify-between gap-2 rounded-2xl border p-4 opacity-65 select-none"
                 >
                   <div className="flex items-center gap-2.5">
                     <CreditCard className="text-soft-plum size-5 shrink-0" aria-hidden="true" />
@@ -851,7 +831,7 @@ export function CheckoutView() {
               </div>
 
               {/* Discreet Stakeholder Demo Panel to test M-Pesa failure state */}
-              <div className="border-plum/25 bg-lavender/35 flex items-center justify-between gap-3 rounded-2xl border-2 border-dashed p-3.5 text-xs">
+              <div className="border-plum/25 bg-lavender/35 flex items-center justify-between gap-3 rounded-2xl border border-dashed p-3.5 text-xs">
                 <div className="flex items-center gap-2">
                   <Checkbox
                     id="dev-simulate-fail"
@@ -873,7 +853,7 @@ export function CheckoutView() {
 
           {/* Right Column: Sticky Order Summary + Promo Code + Pay CTA */}
           <div className="lg:col-span-5">
-            <div className="rounded-feature border-plum shadow-sticker-plum sticky top-24 space-y-5 border-2 bg-white p-6">
+            <div className="rounded-feature border-line-strong shadow-sticker-plum sticky top-24 space-y-5 border bg-white p-6">
               <h2 className="font-display text-plum text-h3 font-bold">Order Summary</h2>
 
               {/* Line Items Preview */}
@@ -963,7 +943,7 @@ export function CheckoutView() {
                   </span>
                   <span className="font-display text-plum font-bold">
                     {totals.effectiveDeliveryFee === 0
-                      ? "FREE 🎉"
+                      ? "FREE"
                       : formatKES(totals.effectiveDeliveryFee)}
                   </span>
                 </div>

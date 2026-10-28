@@ -4,9 +4,8 @@ import { ShopCatalog } from "@/features/catalog/shop-catalog";
 import { ProductCardSkeleton } from "@/components/ui/skeleton";
 
 export const metadata: Metadata = {
-  title: "Shop All Cute Home & Lifestyle Goods",
-  description:
-    "Browse 30+ pastel bags, ceramic tableware, journals, and curated gift bundles in Kenya.",
+  title: "Shop All Home & Lifestyle Goods",
+  description: "Browse 30+ ceramic tableware, bags, stationery, and curated gift bundles in Kenya.",
 };
 
 function ShopFallback() {

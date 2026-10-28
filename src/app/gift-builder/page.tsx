@@ -4,7 +4,7 @@ import { GiftBuilderView } from "@/features/gift-builder/gift-builder-view";
 export const metadata: Metadata = {
   title: "Custom Gift Box Builder (Save 10%)",
   description:
-    "Build your own custom Whimsy.KE pastel gift bundle in 3 steps: pick a vessel, add 1 or 2 cute extras, and choose signature bow wrapping.",
+    "Build your own custom Whimsy.KE gift set in three steps: select a foundation vessel, add companion essentials, and choose bespoke wrapping.",
 };
 
 export default function GiftBuilderPage() {

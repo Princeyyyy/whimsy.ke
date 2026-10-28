@@ -11,7 +11,7 @@ import {
   type OrderStatusStep,
   type StoredOrder,
 } from "@/features/cart/store";
-import { BowMascot } from "@/illustrations/bow-mascot";
+import { BrandGlyph } from "@/illustrations/brand-glyph";
 import { ProductIllustration } from "@/illustrations/product-illustrations";
 import { ScallopDivider } from "@/illustrations/scallop-divider";
 import { Button } from "@/components/ui/button";
@@ -36,8 +36,8 @@ const STATUS_TIMELINE: {
   },
   {
     step: "Packed",
-    title: "Wrapped with a Bow",
-    subtitle: "Nestled in pink tissue with your free sticker sheet",
+    title: "Wrapped & Packaged",
+    subtitle: "Carefully wrapped in archival tissue with your custom note card",
   },
   {
     step: "Out for delivery",
@@ -46,8 +46,8 @@ const STATUS_TIMELINE: {
   },
   {
     step: "Delivered",
-    title: "Delivered with Smiles!",
-    subtitle: "Enjoy your cute Whimsy.KE goodies",
+    title: "Delivered",
+    subtitle: "Parcel delivered successfully",
   },
 ];
 
@@ -97,7 +97,7 @@ export function OrderTrackingView() {
     <div className="pb-16">
       <section className="bg-blush/55 border-plum/15 border-b py-10">
         <div className="mx-auto max-w-(--spacing-container) px-4 sm:px-6">
-          <Badge variant="bestseller">Live Parcel Tracker 📦</Badge>
+          <Badge variant="bestseller">Live Parcel Tracker</Badge>
           <h1 className="font-display text-plum text-h1 mt-2 font-bold">Track Your Whimsy Order</h1>
           <p className="text-soft-plum text-body mt-1 max-w-xl">
             Enter your order number and phone number below. Try our pre-seeded demo order{" "}
@@ -111,7 +111,7 @@ export function OrderTrackingView() {
         {/* Lookup Form */}
         <form
           onSubmit={handleSearchSubmit}
-          className="rounded-feature border-plum shadow-sticker grid grid-cols-1 gap-4 border-2 bg-white p-6 sm:grid-cols-12 sm:items-end"
+          className="rounded-feature border-line-strong shadow-sticker grid grid-cols-1 gap-4 border bg-white p-6 sm:grid-cols-12 sm:items-end"
         >
           <div className="sm:col-span-5">
             <Label htmlFor="track-order-number">Order Number</Label>
@@ -159,7 +159,7 @@ export function OrderTrackingView() {
                     setPhoneInput(o.phone);
                     setActiveQuery({ orderNo: o.orderNumber, phoneRaw: o.phone });
                   }}
-                  className="font-display border-plum bg-butter/60 hover:bg-butter text-plum rounded-full border px-3 py-1 font-bold transition-colors"
+                  className="font-display border-line-strong bg-butter/60 hover:bg-butter text-plum rounded-full border px-3 py-1 font-bold transition-colors"
                 >
                   {o.orderNumber} ({o.status})
                 </button>
@@ -170,8 +170,8 @@ export function OrderTrackingView() {
 
         {/* Results Area */}
         {hydrated && !matchedOrder && (
-          <div className="rounded-feature border-plum shadow-sticker flex flex-col items-center border-2 bg-white p-10 text-center">
-            <BowMascot mood="confused" size="lg" />
+          <div className="rounded-feature border-line-strong shadow-sticker flex flex-col items-center border bg-white p-10 text-center">
+            <BrandGlyph mood="confused" size="lg" />
             <h2 className="font-display text-plum text-h3 mt-4 font-bold">
               Pole! We couldn&apos;t find an order matching those details.
             </h2>
@@ -183,7 +183,7 @@ export function OrderTrackingView() {
         )}
 
         {matchedOrder && (
-          <div className="rounded-feature border-plum shadow-sticker-plum space-y-8 border-2 bg-white p-6 sm:p-8">
+          <div className="rounded-feature border-line-strong shadow-sticker-plum space-y-8 border bg-white p-6 sm:p-8">
             {/* Top Summary Header */}
             <div className="border-blush flex flex-wrap items-start justify-between gap-4 border-b pb-6">
               <div>
@@ -201,7 +201,7 @@ export function OrderTrackingView() {
                 </p>
               </div>
 
-              <div className="border-plum bg-mint/55 rounded-2xl border-2 px-4 py-3 text-right">
+              <div className="border-line-strong bg-mint/55 rounded-2xl border px-4 py-3 text-right">
                 <span className="text-soft-plum block text-xs font-bold uppercase">
                   Estimated Arrival
                 </span>
@@ -223,27 +223,27 @@ export function OrderTrackingView() {
                     <li
                       key={item.step}
                       className={cn(
-                        "rounded-2xl border-2 p-4 transition-all",
+                        "rounded-2xl border p-4 transition-all",
                         isCurrent
-                          ? "border-plum bg-butter/65 shadow-[0_4px_0_#4A3552]"
+                          ? "border-line-strong bg-butter/65 shadow-sticker"
                           : isCompleted
-                            ? "border-plum bg-mint/55"
+                            ? "border-line-strong bg-mint/55"
                             : "border-plum/20 bg-cream/60 opacity-65",
                       )}
                     >
                       <div className="mb-2 flex items-center justify-between">
                         <span
                           className={cn(
-                            "font-display flex size-7 items-center justify-center rounded-full border-2 text-xs font-bold",
+                            "font-display flex size-7 items-center justify-center rounded-full border text-xs font-bold",
                             isCompleted
-                              ? "border-plum text-plum bg-white"
+                              ? "border-line-strong text-plum bg-white"
                               : "border-plum/30 text-soft-plum bg-white",
                           )}
                         >
                           {isCompleted ? <Check className="size-4 stroke-[3]" /> : idx + 1}
                         </span>
                         {isCurrent && (
-                          <span className="font-display bg-bubblegum border-plum text-plum rounded-full border px-2 py-0.5 text-[10px] font-bold">
+                          <span className="font-display bg-bubblegum border-line-strong text-plum rounded-full border px-2 py-0.5 text-[10px] font-bold">
                             Now
                           </span>
                         )}
@@ -258,7 +258,7 @@ export function OrderTrackingView() {
 
             {/* Delivery Address & Items Breakdown */}
             <div className="grid grid-cols-1 gap-6 pt-2 md:grid-cols-12">
-              <div className="border-plum/25 bg-cream/65 space-y-2.5 rounded-2xl border-2 p-4 text-xs md:col-span-5">
+              <div className="border-plum/25 bg-cream/65 space-y-2.5 rounded-2xl border p-4 text-xs md:col-span-5">
                 <h3 className="font-display text-plum flex items-center gap-1.5 text-sm font-bold">
                   <MapPin className="size-4" aria-hidden="true" />
                   <span>Delivery Destination</span>
@@ -270,12 +270,12 @@ export function OrderTrackingView() {
                 </p>
                 {matchedOrder.orderNote && (
                   <p className="bg-butter/50 text-plum mt-2 rounded-xl p-2.5 font-semibold">
-                    💌 Gift Note: &ldquo;{matchedOrder.orderNote}&rdquo;
+                    Gift Note: &ldquo;{matchedOrder.orderNote}&rdquo;
                   </p>
                 )}
               </div>
 
-              <div className="border-plum/25 rounded-2xl border-2 bg-white p-4 md:col-span-7">
+              <div className="border-plum/25 rounded-2xl border bg-white p-4 md:col-span-7">
                 <h3 className="font-display text-plum mb-3 flex items-center gap-1.5 text-sm font-bold">
                   <Package className="size-4" aria-hidden="true" />
                   <span>Items Inside Your Parcel</span>

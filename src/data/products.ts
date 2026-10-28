@@ -44,9 +44,9 @@ export const PRODUCTS: Product[] = [
     categorySlug: "bags",
     category: "Bags",
     price: 1200,
-    shortDescription: "Sturdy cotton canvas mini tote with a front bow pocket.",
+    shortDescription: "Sturdy cotton canvas mini tote with a front slip pocket.",
     longDescription:
-      "Sized just right for your Dotty Journal, Cute Water Bottle, and daily essentials. Our Lavender Mini Tote is stitched from heavy 14oz cotton canvas in dreamy lilac with a cream front slip pocket and embroidered bow detail. Includes an internal snap button so nothing peeks out while you're on the move.",
+      "Sized just right for your Dotty Journal, water bottle, and daily carry essentials. Our Lavender Mini Tote is stitched from heavy 14oz cotton canvas in muted lilac with a cream front slip pocket and tonal embroidered detail. Includes an internal snap button so nothing peeks out while you're on the move.",
     details: {
       size: "28 cm × 25 cm × 10 cm",
       material: "100% heavy-duty 14oz brushed cotton canvas",
@@ -276,7 +276,7 @@ export const PRODUCTS: Product[] = [
     price: 850,
     shortDescription: "Hand-poured soy wax candle in a reusable pastel ceramic jar.",
     longDescription:
-      "Fill your room with comforting notes of whipped vanilla, toasted coconut, and soft lavender. Once the 35-hour clean-burning cotton wick finishes, wash out the pastel jar to reuse as a cute cotton-bud or pen holder.",
+      "Fill your room with comforting notes of whipped vanilla, toasted coconut, and soft lavender. Once the 35-hour clean-burning cotton wick finishes, wash out the pastel jar to reuse as an elegant desk vessel or trinket pot.",
     details: {
       size: "180g net weight (approx. 35 hours burn time)",
       material: "100% natural soy wax, cotton wick, reusable ceramic vessel",
@@ -390,7 +390,7 @@ export const PRODUCTS: Product[] = [
     compareAtPrice: 3200,
     shortDescription: "Teapot and two matching scalloped cups with saucers.",
     longDescription:
-      "Host the cutest afternoon chai party in town. This 5-piece porcelain set includes a 750ml ribbon-lid teapot, two teacup-and-saucer pairs, and subtle gold-toned heart accents.",
+      "Elevate your afternoon chai rituals. This 5-piece porcelain set includes a 750ml sculptural teapot, two teacup-and-saucer pairs, and subtle lustrous trim accents.",
     details: {
       size: "Teapot: 750 ml; Cups: 220 ml each",
       material: "Fine glazed porcelain",
@@ -445,7 +445,7 @@ export const PRODUCTS: Product[] = [
     price: 800,
     shortDescription: "Leak-proof frosted bottle with a flip straw & carry loop.",
     longDescription:
-      "Stay hydrated from matatu commutes to gym sessions with our Cute Water Bottle. Features a one-click pop-up silicone straw, time-marker encouragement ticks on the back, and a soft carry loop.",
+      "Stay hydrated from city commutes to gym sessions with our Frosted Water Bottle. Features a one-click pop-up silicone straw, subtle measurement markings, and a soft carry loop.",
     details: {
       size: "700 ml capacity (22 cm height × 7.5 cm width)",
       material: "BPA-free Eastman Tritan with food-grade silicone seal",
@@ -511,7 +511,7 @@ export const PRODUCTS: Product[] = [
     price: 700,
     shortDescription: "Shock-absorbent pastel bumper case with raised heart grip.",
     longDescription:
-      "Protect your phone from accidental drops without sacrificing an ounce of cuteness. Designed with raised camera-lens bezels, responsive tactile side buttons, and an embossed glossy heart motif.",
+      "Protect your phone from accidental drops with tactile, understated elegance. Designed with raised camera-lens bezels, responsive tactile side buttons, and an embossed heart motif.",
     details: {
       size: "Precision fit for selected iPhone & Samsung Galaxy models",
       material: "Shock-absorbing TPU bumper with scratch-resistant backplate",
@@ -633,7 +633,7 @@ export const PRODUCTS: Product[] = [
     price: 950,
     shortDescription: "Rotating 5-slot pen caddy with a mini sticker drawer.",
     longDescription:
-      "Keep gel pens, highlighters, scissors, and washi tape tidy and within reach. Spins smoothly 360 degrees and includes a cute pull-out mini drawer for paperclips and sticky notes.",
+      "Keep pens, markers, scissors, and tools tidy and within reach. Spins smoothly 360 degrees and includes a quiet pull-out drawer for paperclips and desk essentials.",
     details: {
       size: "15 cm × 15 cm × 13 cm",
       material: "Recycled matte ABS with non-slip silicone base",

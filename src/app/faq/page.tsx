@@ -24,7 +24,7 @@ export default function FaqPage() {
     <div className="pb-16">
       <section className="bg-blush/55 border-plum/15 border-b py-10">
         <div className="mx-auto max-w-(--spacing-container) px-4 sm:px-6">
-          <Badge variant="bestseller">Everything You Need to Know ✨</Badge>
+          <Badge variant="bestseller">Everything You Need to Know</Badge>
           <h1 className="font-display text-plum text-h1 mt-2 font-bold">
             Frequently Asked Questions
           </h1>
@@ -53,7 +53,7 @@ export default function FaqPage() {
           ))}
         </Accordion>
 
-        <div className="rounded-card border-plum bg-butter/50 border-2 p-6 text-center shadow-[0_4px_0_#4A3552]">
+        <div className="rounded-card border-line-strong bg-butter/50 shadow-sticker border p-6 text-center">
           <h2 className="font-display text-plum text-h3 font-bold">Still have a question?</h2>
           <p className="text-plum/85 text-small mt-1">
             Message our friendly team in Kilimani and we&apos;ll help right away.
